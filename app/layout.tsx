@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google"; // Importing the new font
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Configure the font
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${spaceMono.variable} font-mono antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
