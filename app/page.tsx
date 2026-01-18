@@ -144,7 +144,7 @@ export default function Home() {
             <div className="border border-black p-8">
               <h3 className="text-lg font-bold uppercase mb-6">Languages</h3>
               <div className="flex flex-wrap gap-3">
-                {["Python", "JavaScript", "TypeScript", "SQL"].map((skill) => (
+                {["Python", "JavaScript", "TypeScript", "SQL", "CSS"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>

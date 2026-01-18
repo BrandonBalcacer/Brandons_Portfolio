@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next"
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google"; // Importing the new font
 import "./globals.css";
