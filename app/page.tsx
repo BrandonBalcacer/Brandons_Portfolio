@@ -53,7 +53,7 @@ export default function Home() {
             <div className="border border-black p-6 md:p-8 flex flex-col justify-between h-full hover:bg-white transition-colors">
               <div className="mb-8">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold uppercase max-w-[70%]">Technology Support Intern</h3>
+                  <h3 className="text-lg font-bold uppercase max-w-[70%]">Data Analytics Intern</h3>
                   <span className="text-xs font-bold uppercase border border-black px-2 py-1">Jan — May 2026</span>
                 </div>
                 <p className="text-lg uppercase tracking-wide mb-6 text-gray-600">MTA (Metropolitan Transportation Authority)</p>
