@@ -129,6 +129,9 @@ export default function Home() {
                  </div>
               </div>
             </Link>
+
+
+
           </div>
         </section>
 
@@ -144,7 +147,7 @@ export default function Home() {
             <div className="border border-black p-8">
               <h3 className="text-lg font-bold uppercase mb-6">Languages</h3>
               <div className="flex flex-wrap gap-3">
-                {["Python", "JavaScript", "TypeScript", "SQL", "CSS"].map((skill) => (
+                {["Python", "JavaScript", "TypeScript", "SQL"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>
@@ -156,7 +159,20 @@ export default function Home() {
             <div className="border border-black p-8">
               <h3 className="text-lg font-bold uppercase mb-6">Focus Areas</h3>
               <div className="flex flex-wrap gap-3">
-                 {["Software Development", "Data Analytics"].map((skill) => (
+                 {["Software Development", "Data Analytics", "Machine Learning"].map((skill) => (
+                  <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+
+            {/* building things with these tools */}
+            <div className="border border-black p-8">
+              <h3 className="text-lg font-bold uppercase mb-6">Tools</h3>
+              <div className="flex flex-wrap gap-3">
+                {["Power Apps", "Power Automate", "SharePoint", "Power BI", "Tableau", "Git", "AWS"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>
