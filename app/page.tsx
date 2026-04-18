@@ -99,7 +99,7 @@ export default function Home() {
 
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                  Full-stack ticketing platform with Role-Based Access Control and automated activity logging.
+                  Full-stack IT help desk built with Python Flask and SQLite to manage support tickets across an organization. Features Role-Based Access Control so admins, agents, and end users each operate within scoped permissions. Automated activity logging tracks the full ticket lifecycle from open to resolution.
                 </p>
                 <div className="flex gap-2 text-xs font-bold flex-wrap justify-end">
                   <span className="border border-black px-2 py-1 uppercase">Python</span>
@@ -120,7 +120,7 @@ export default function Home() {
 
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                  End-to-end bakery operations dashboard ingesting Shopify orders via HMAC-verified webhooks; generates weekly production schedules, shopping lists, and per-product profit margin reports.
+                  Operations dashboard built for a live Shopify bakery business, ingesting real order data via HMAC-verified webhooks and Admin API backfills. Joins order, recipe, and expense data in SQLite to auto-generate weekly production schedules, ingredient shopping lists, and per-product profit margin reports. A pandas normalization pipeline reconciles ingredient typos and unit variants across recipe files for accurate automated aggregation.
                 </p>
                 <div className="flex gap-2 text-xs font-bold flex-wrap justify-end">
                   <span className="border border-black px-2 py-1 uppercase">Python</span>
@@ -142,7 +142,7 @@ export default function Home() {
 
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                  5-phase automated pipeline integrating Google Places, Firecrawl, Hunter.io, and Claude AI to source, score, enrich, and contact leads with smart send-time scheduling for personalized outreach.
+                  Automated B2B outreach pipeline built for Archive Studio Marketing to eliminate manual lead research. Integrates Google Places, Firecrawl, Hunter.io, and Claude AI across 5 phases to discover businesses, scrape web data, find decision-maker contacts, and generate personalized emails. A smart send-time scheduling system optimizes delivery timing per prospect to maximize open and response rates.
                 </p>
                 <div className="flex gap-2 text-xs font-bold flex-wrap justify-end">
                   <span className="border border-black px-2 py-1 uppercase">Python</span>
