@@ -54,12 +54,14 @@ export default function Home() {
               <div className="mb-8">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-lg font-bold uppercase max-w-[70%]">Data Analytics Intern</h3>
-                  <span className="text-xs font-bold uppercase border border-black px-2 py-1">Jan — May 2026</span>
+                  <span className="text-xs font-bold uppercase border border-black px-2 py-1">Jan 2026 — Present</span>
                 </div>
                 <p className="text-lg uppercase tracking-wide mb-6 text-gray-600">MTA (Metropolitan Transportation Authority)</p>
                 <p className="text-sm leading-relaxed text-gray-800 uppercase">
-                  Developing automated dashboards using Power Apps and Power BI to digitize manual operational processes. 
-                  Architected a SharePoint Communication Site to centralize technical documentation and improve cross-team collaboration.
+                  Engineered Python and SQL ETL workflows to clean and standardize 1,600+ operational records,
+                  and deployed Power BI dashboards tracking material usage, fulfillment rates, and project KPIs.
+                  Automated manual memorandum and paper tracking processes with Power Automate, Power Apps, and SharePoint,
+                  and applied generative AI to accelerate data cleaning and extract structured insights from raw operational data.
                 </p>
               </div>
             </div>
@@ -73,8 +75,10 @@ export default function Home() {
                 </div>
                 <p className="text-lg uppercase tracking-wide mb-6 text-gray-600">Target</p>
                 <p className="text-sm leading-relaxed text-gray-800 uppercase">
-                  Provided coverage for Front-End Team Lead roles, resolving technical challenges with POS systems and optimizing order fulfillment. 
-                  Streamlined departmental workflows and trained team members on digital tools to ensure 99% order accuracy.
+                  Covered Front-End Team Lead duties overseeing guest service, cashier management, and digital order fulfillment,
+                  diagnosing issues across 12+ POS and self-checkout systems.
+                  Picked and batched digital orders with 99% accuracy, trained new hires on fulfillment tech,
+                  and earned the Annual Performance Bonus for team contributions.
                 </p>
               </div>
             </div>
@@ -89,48 +93,54 @@ export default function Home() {
           </div>
 
           <div className="grid gap-12">
-            {/* it help desk ticketing system project */}
-            <Link href="https://github.com/BrandonBalcacer/IT_Ticketing_System" target="_blank" className="group block border-t border-black pt-8">
+            {/* B2B lead gen pipeline – main project */}
+            <Link href="https://github.com/BrandonBalcacer" target="_blank" className="group block border-t border-black pt-8">
               <div className="flex justify-between items-start mb-4">
                  <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:opacity-60 transition-opacity flex items-center gap-4">
-                  IT Help Desk <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                  B2B Lead Generator <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
                 </h2>
-                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">Oct 2025</span>
+                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">2026</span>
               </div>
-              
+
               <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                  <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                   Full-stack ticketing platform with Role-Based Access Control and automated activity logging.
+                   5-phase automated outreach pipeline for Archive Studio Marketing —
+                   sources, scores, and enriches B2B leads using Google Places, Firecrawl, and Hunter.io,
+                   then uses Claude AI to generate personalized emails with smart send-time scheduling.
+                   Built to turn cold prospecting into a repeatable, revenue-driving system.
+                 </p>
+                 <div className="flex gap-2 text-xs font-bold">
+                   <span className="border border-black px-2 py-1 uppercase">Python</span>
+                   <span className="border border-black px-2 py-1 uppercase">APIs</span>
+                   <span className="border border-black px-2 py-1 uppercase">Claude AI</span>
+                 </div>
+              </div>
+            </Link>
+
+            {/* Tasteful Sweets bakery dashboard */}
+            <Link href="https://github.com/BrandonBalcacer" target="_blank" className="group block border-t border-black pt-8">
+              <div className="flex justify-between items-start mb-4">
+                 <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:opacity-60 transition-opacity flex items-center gap-4">
+                  Tasteful Sweets Dashboard <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                </h2>
+                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">2026</span>
+              </div>
+
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
+                   End-to-end operations and analytics dashboard running live for an active bakery business.
+                   Ingests Shopify orders via HMAC-verified webhooks, reconciles recipe and expense data in SQLite,
+                   and auto-generates weekly production schedules, shopping lists, and per-product profit margin reports —
+                   turning raw order data into the decisions that keep the bakery profitable.
                  </p>
                  <div className="flex gap-2 text-xs font-bold">
                    <span className="border border-black px-2 py-1 uppercase">Python</span>
                    <span className="border border-black px-2 py-1 uppercase">Flask</span>
-                   <span className="border border-black px-2 py-1 uppercase">SQL</span>
+                   <span className="border border-black px-2 py-1 uppercase">SQLite</span>
+                   <span className="border border-black px-2 py-1 uppercase">pandas</span>
                  </div>
               </div>
             </Link>
-
-            {/* Static AWS cloud site */}
-             <Link href="https://brandonsbig-cloudbucket111.s3.us-east-2.amazonaws.com/index.html" target="_blank" className="group block border-t border-black pt-8">
-              <div className="flex justify-between items-start mb-4">
-                 <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:opacity-60 transition-opacity flex items-center gap-4">
-                  Cloud Infrastructure <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h2>
-                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">Sept 2025</span>
-              </div>
-              
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                   Secure static site deployment via AWS S3 & CloudFront with custom IAM policies.
-                 </p>
-                 <div className="flex gap-2 text-xs font-bold">
-                   <span className="border border-black px-2 py-1 uppercase">AWS S3</span>
-                   <span className="border border-black px-2 py-1 uppercase">CloudFront</span>
-                 </div>
-              </div>
-            </Link>
-
-
 
           </div>
         </section>
@@ -143,11 +153,11 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            {/* i speak many languages call me international */}
+            {/* languages and data */}
             <div className="border border-black p-8">
-              <h3 className="text-lg font-bold uppercase mb-6">Languages</h3>
+              <h3 className="text-lg font-bold uppercase mb-6">Languages & Data</h3>
               <div className="flex flex-wrap gap-3">
-                {["Python", "JavaScript", "TypeScript", "SQL"].map((skill) => (
+                {["Python", "pandas", "openpyxl", "SQL", "DAX", "PowerFx", "JavaScript", "HTML/CSS"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>
@@ -155,11 +165,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* also known as the LOCKED IN AREA */}
+            {/* analytics and BI */}
             <div className="border border-black p-8">
-              <h3 className="text-lg font-bold uppercase mb-6">Focus Areas</h3>
+              <h3 className="text-lg font-bold uppercase mb-6">Analytics & BI</h3>
               <div className="flex flex-wrap gap-3">
-                 {["Software Development", "Data Analytics", "Machine Learning"].map((skill) => (
+                 {["Power BI", "Tableau", "Power Apps", "Power Automate", "SharePoint", "ETL Pipelines", "Statistical Analysis"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>
@@ -168,11 +178,11 @@ export default function Home() {
             </div>
 
 
-            {/* building things with these tools */}
+            {/* backend and cloud */}
             <div className="border border-black p-8">
-              <h3 className="text-lg font-bold uppercase mb-6">Tools</h3>
+              <h3 className="text-lg font-bold uppercase mb-6">Backend & Cloud</h3>
               <div className="flex flex-wrap gap-3">
-                {["Power Apps", "Power Automate", "SharePoint", "Power BI", "Tableau", "Git", "AWS"].map((skill) => (
+                {["SQLite", "Flask", "REST APIs", "Webhooks (HMAC)", "AWS S3", "CloudFront", "IAM", "Git", "Generative AI", "Prompt Engineering"].map((skill) => (
                   <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
                     {skill}
                   </span>
