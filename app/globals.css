@@ -2,8 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* above is the imports required for tailwind to work */
-body{
-  background: #000000;
-  color: #ffffff;
+:root {
+  --bg: #f5f1ea;
+  --ink: #1f1e1d;
+  --clay: #cc785c;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #cc785c;
+  color: #faf7f1;
+}
+
+/* Subtle paper grain on the body for the Claude editorial feel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(
+      circle at 20% 10%,
+      rgba(204, 120, 92, 0.06),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      rgba(204, 120, 92, 0.05),
+      transparent 45%
+    );
+}
+
+/* Animated hairline that sweeps under section headings */
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.draw-line {
+  transform-origin: left;
+  animation: drawLine 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Asterisk mark used as Claude-style accent */
+.asterisk {
+  color: var(--clay);
+  display: inline-block;
+}
+
+/* Underline-on-hover link */
+.link-under {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.4s ease;
+}
+.link-under:hover {
+  background-size: 100% 1px;
 }
