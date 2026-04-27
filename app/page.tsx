@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
   Mail,
@@ -9,6 +11,7 @@ import {
   Linkedin,
   Sparkles,
   MapPin,
+  ChevronDown,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -16,6 +19,7 @@ import {
 /* ------------------------------------------------------------------ */
 
 const NAV = [
+  { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
@@ -48,6 +52,19 @@ const PROJECTS = [
       "A 5-phase automated outreach pipeline for Archive Studio Marketing — sources, scores, and enriches B2B leads using Google Places, Firecrawl, and Hunter.io, then uses Claude to draft personalized emails with smart send-time scheduling. Built to turn cold prospecting into a repeatable, revenue-driving system.",
     role: "End-to-end build",
     tags: ["Python", "APIs", "Claude AI", "Automation"],
+    details: {
+      problem:
+        "Archive Studio Marketing needed a repeatable way to source and warm B2B leads without burning hours on manual prospecting.",
+      approach: [
+        "Phase 1 — source leads via Google Places API filtered by industry, geography, and rating.",
+        "Phase 2 — enrich with Firecrawl site scraping and Hunter.io verified emails.",
+        "Phase 3 — score leads on signal density: tech stack, hiring activity, recency.",
+        "Phase 4 — Claude drafts personalized outreach grounded in scraped context.",
+        "Phase 5 — smart send-time scheduling per timezone with throttling.",
+      ],
+      impact:
+        "Turned a manual, ad-hoc workflow into a single command that produces ranked, ready-to-send sequences.",
+    },
   },
   {
     title: "Tasteful Sweets Dashboard",
@@ -57,6 +74,18 @@ const PROJECTS = [
       "An end-to-end operations and analytics dashboard running live for an active bakery business. Ingests Shopify orders via HMAC-verified webhooks, reconciles recipe and expense data in SQLite, and auto-generates weekly production schedules, shopping lists, and per-product profit margin reports — turning raw order data into the decisions that keep the bakery profitable.",
     role: "Production system",
     tags: ["Python", "Flask", "SQLite", "pandas"],
+    details: {
+      problem:
+        "An active bakery needed visibility on margins, schedules, and shopping lists — straight from raw Shopify orders.",
+      approach: [
+        "HMAC-verified Shopify webhooks ingest live orders into SQLite.",
+        "Recipe and expense tables let pandas reconcile per-product cost.",
+        "Auto-generates weekly production schedules and shopping lists.",
+        "Outputs profit-margin reports per SKU to drive pricing decisions.",
+      ],
+      impact:
+        "What to bake, what to buy, and what to reprice are now decided by yesterday's orders, not gut feel.",
+    },
   },
 ];
 
@@ -129,6 +158,7 @@ export default function Home() {
       <Nav scrolled={scrolled} />
       <Hero />
       <Intro />
+      <About />
       <Work />
       <Experience />
       <Skills />
@@ -285,6 +315,86 @@ function Intro() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  About                                                              */
+/* ------------------------------------------------------------------ */
+
+function About() {
+  return (
+    <section id="about" className="border-b border-line">
+      <div className="mx-auto max-w-6xl px-6 py-28 md:px-10 md:py-36">
+        <SectionHeading
+          index="01"
+          eyebrow="About"
+          title="Builder, runner, and a curious eater."
+          lede="The shorthand: I work with data by day and chase finish lines (and new menus) on the side."
+        />
+
+        <div className="grid gap-12 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-7 space-y-5 text-[15px] md:text-base leading-relaxed text-graphite">
+            <p>
+              I&apos;m a{" "}
+              <span className="text-ink font-medium">data analyst and builder</span>{" "}
+              studying at Ramapo College of New Jersey, where I also competed as
+              an{" "}
+              <span className="text-ink font-medium">
+                NCAA track &amp; field athlete
+              </span>{" "}
+              — sprinting the 100m dash and earning NJAC Honorable Mention
+              All-Conference recognition.
+            </p>
+            <p>
+              That same drive shows up in my work. I love taking messy
+              spreadsheets, tangled APIs, and unstructured operational data and
+              pulling them into clear, repeatable systems. Right now that looks
+              like Python ETL pipelines, Power BI dashboards, and AI-assisted
+              automations at the MTA.
+            </p>
+            <p>
+              Outside of work, I&apos;m still running and lifting almost daily —
+              staying fit is non-negotiable for me. I&apos;m also a serial
+              menu-explorer: trying new restaurants, new cuisines, and new
+              recipes is one of my favorite ways to unwind.
+            </p>
+          </div>
+
+          <div className="md:col-span-5 grid grid-cols-2 gap-4">
+            <figure className="overflow-hidden rounded-2xl border border-line bg-paper shadow-card">
+              <div className="relative aspect-[4/5]">
+                <Image
+                  src="/track.svg"
+                  alt="Brandon Balcacer racing the 100m dash for Ramapo — NJAC Honorable Mention All-Conference."
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <figcaption className="px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                NJAC · 100m
+              </figcaption>
+            </figure>
+            <figure className="overflow-hidden rounded-2xl border border-line bg-paper shadow-card md:translate-y-8">
+              <div className="relative aspect-[4/5]">
+                <Image
+                  src="/mta.svg"
+                  alt="Brandon at the MTA New York City Transit office during his Data Analytics Internship."
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                MTA · NYC Transit
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Section heading                                                    */
 /* ------------------------------------------------------------------ */
 
@@ -326,7 +436,7 @@ function Work() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-6 py-28 md:px-10 md:py-36">
       <SectionHeading
-        index="01"
+        index="02"
         eyebrow="Selected Work"
         title="Projects that turn data into decisions."
         lede="A small set of recent builds — production systems, AI-assisted pipelines, and analytics surfaces."
@@ -346,33 +456,98 @@ function ProjectCard({
 }: {
   project: (typeof PROJECTS)[number];
 }) {
+  const [open, setOpen] = useState(false);
   return (
-    <Link
-      href={project.href}
-      target="_blank"
-      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-line bg-paper p-7 shadow-card transition-all hover:-translate-y-0.5 hover:border-clay/40"
+    <article
+      className={[
+        "group relative flex flex-col overflow-hidden rounded-2xl border bg-paper p-7 shadow-card transition-all",
+        open ? "border-clay/40" : "border-line hover:-translate-y-0.5 hover:border-clay/40",
+      ].join(" ")}
     >
-      {/* hover glow */}
       <span
         aria-hidden
         className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-clayLight/40 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
       />
-      <div>
-        <div className="mb-5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
+
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        className="flex w-full flex-col items-start text-left"
+      >
+        <div className="mb-5 flex w-full items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
           <span>{project.role}</span>
           <span>{project.year}</span>
         </div>
         <h3 className="font-serif text-2xl md:text-[28px] leading-tight text-ink">
           {project.title}
-          <ArrowUpRight
+          <ChevronDown
             size={20}
-            className="ml-2 inline-block -translate-y-0.5 text-clay opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100"
+            className={[
+              "ml-2 inline-block -translate-y-0.5 text-clay transition-transform duration-300",
+              open ? "rotate-180" : "",
+            ].join(" ")}
           />
         </h3>
         <p className="mt-4 text-[15px] leading-relaxed text-graphite">
           {project.description}
         </p>
-      </div>
+        <span className="mt-3 font-mono text-[10px] uppercase tracking-[0.25em] text-clay">
+          {open ? "Hide details" : "Click to expand"}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="details"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="mt-6 space-y-5 border-t border-line pt-6">
+              <div>
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-clay">
+                  Problem
+                </div>
+                <p className="text-[15px] leading-relaxed text-graphite">
+                  {project.details.problem}
+                </p>
+              </div>
+              <div>
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-clay">
+                  Approach
+                </div>
+                <ul className="space-y-2 text-[15px] leading-relaxed text-graphite">
+                  {project.details.approach.map((step, i) => (
+                    <li key={i} className="flex gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-clay" />
+                      <span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-clay">
+                  Impact
+                </div>
+                <p className="text-[15px] leading-relaxed text-graphite">
+                  {project.details.impact}
+                </p>
+              </div>
+              <Link
+                href={project.href}
+                target="_blank"
+                className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper px-4 py-2 text-sm hover:border-clay hover:text-clay transition-colors"
+              >
+                <Github size={14} /> View on GitHub <ArrowUpRight size={14} />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="mt-6 flex flex-wrap gap-2">
         {project.tags.map((t) => (
@@ -384,7 +559,7 @@ function ProjectCard({
           </span>
         ))}
       </div>
-    </Link>
+    </article>
   );
 }
 
@@ -400,7 +575,7 @@ function Experience() {
     >
       <div className="mx-auto max-w-6xl px-6 py-28 md:px-10 md:py-36">
         <SectionHeading
-          index="02"
+          index="03"
           eyebrow="Experience"
           title="Where I've shipped real work."
           lede="A mix of analytics, automation, and operations — bringing structure to messy data and messy systems."
@@ -460,7 +635,7 @@ function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 py-28 md:px-10 md:py-36">
       <SectionHeading
-        index="03"
+        index="04"
         eyebrow="Toolkit"
         title="What I reach for."
         lede="The stack I use to move from question, to data, to decision."
@@ -522,10 +697,10 @@ function Contact() {
         </p>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a
-            href="mailto:bbalcace@ramapo.edu"
+            href="mailto:balcacerrule@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm text-cream hover:bg-clay transition-colors"
           >
-            <Mail size={16} /> bbalcace@ramapo.edu
+            <Mail size={16} /> balcacerrule@gmail.com
           </a>
           <a
             href="https://github.com/BrandonBalcacer"
