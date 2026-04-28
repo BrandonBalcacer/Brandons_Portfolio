@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --bg: #f6f1e8;
-  --ink: #16100e;
-  --maroon: #7a1f2b;
-  --gold: #c9a55a;
+  --bg: #ffffff;
+  --ink: #0a0a0a;
+  --accent: #0a0a0a;
 }
 
 html,
@@ -15,30 +14,12 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 ::selection {
-  background: var(--maroon);
-  color: #fbf7ef;
-}
-
-/* Subtle paper grain on the body */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: radial-gradient(
-      circle at 18% 8%,
-      rgba(122, 31, 43, 0.08),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 88% 92%,
-      rgba(201, 165, 90, 0.07),
-      transparent 48%
-    );
+  background: var(--ink);
+  color: #ffffff;
 }
 
 /* Animated hairline that sweeps under section headings */

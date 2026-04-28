@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ivory: "#F6F1E8",
-        cream: "#FBF7EF",
+        ivory: "#FFFFFF",
+        cream: "#FAFAFA",
         paper: "#FFFFFF",
         ink: "#16100E",
         graphite: "#3A2F2C",
