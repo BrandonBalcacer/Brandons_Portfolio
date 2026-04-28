@@ -156,6 +156,15 @@ export default function Home() {
     <main className="relative min-h-screen text-ink">
       <Nav scrolled={scrolled} />
       <Hero />
+      {/* soft transition zone — blue dissolves into white */}
+      <div
+        aria-hidden
+        className="relative h-32 w-full -mt-32 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.6) 55%, #ffffff 100%)",
+        }}
+      />
       <About />
       <Work />
       <Experience />
@@ -732,7 +741,7 @@ function Contact() {
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(50% 50% at 50% 0%, rgba(204,120,92,0.18) 0%, rgba(204,120,92,0) 70%)",
+            "radial-gradient(50% 50% at 50% 0%, rgba(31,61,236,0.16) 0%, rgba(31,61,236,0) 70%)",
         }}
       />
       <div className="mx-auto max-w-4xl px-6 py-28 text-center md:px-10 md:py-36">
