@@ -289,21 +289,15 @@ function Hero() {
 
         {/* RIGHT: hero photo slot — tall, framed, slightly tilted */}
         <div className="md:col-span-4 relative">
-          <div className="relative mx-auto aspect-[3/4] w-full max-w-sm rotate-[1.5deg] overflow-hidden rounded-2xl border border-line bg-paper shadow-bold md:max-w-none">
+          <div className="relative mx-auto aspect-square w-full max-w-md rotate-[1.5deg] overflow-hidden rounded-2xl border border-line bg-paper shadow-bold md:max-w-none">
             <Image
-              src="/track.svg"
-              alt="Brandon Balcacer racing the 100m dash for Ramapo — NJAC Honorable Mention All-Conference."
+              src="/track.jpg"
+              alt="Brandon Balcacer — NJAC Honorable Mention All-Conference, 100m Dash."
               fill
               sizes="(max-width: 768px) 90vw, 35vw"
               className="object-cover"
               priority
             />
-            <span className="absolute left-3 top-3 rounded-full bg-ink/85 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-cream">
-              NJAC · 100m
-            </span>
-            <span className="absolute bottom-3 right-3 rounded-full bg-gold px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-ink">
-              Honorable Mention
-            </span>
           </div>
         </div>
       </div>
@@ -383,34 +377,21 @@ function About() {
         {/* Two big asymmetric photos, then text below */}
         <div className="grid gap-6 md:grid-cols-12 md:gap-8">
           <figure className="md:col-span-7 group relative overflow-hidden rounded-3xl border border-line bg-paper shadow-bold">
-            <div className="relative aspect-[4/3] md:aspect-[16/11]">
+            <div className="relative aspect-square">
               <Image
-                src="/track.svg"
-                alt="Brandon Balcacer racing the 100m dash for Ramapo — NJAC Honorable Mention All-Conference."
+                src="/track.jpg"
+                alt="Brandon Balcacer — NJAC Honorable Mention All-Conference, 100m Dash."
                 fill
                 sizes="(max-width: 768px) 100vw, 60vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
             </div>
-            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent p-6 text-cream">
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold">
-                  NJAC · 100m Dash
-                </div>
-                <div className="mt-1 font-display text-3xl tracking-jersey">
-                  HONORABLE MENTION ALL-CONFERENCE
-                </div>
-              </div>
-              <span className="hidden rounded-full bg-gold px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] text-ink md:inline-block">
-                Ramapo
-              </span>
-            </figcaption>
           </figure>
 
           <figure className="md:col-span-5 group relative overflow-hidden rounded-3xl border border-line bg-paper shadow-bold md:translate-y-10">
-            <div className="relative aspect-[4/5]">
+            <div className="relative aspect-[3/4]">
               <Image
-                src="/mta.svg"
+                src="/mta.jpg"
                 alt="Brandon at the MTA New York City Transit office during his Data Analytics Internship."
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
