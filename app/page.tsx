@@ -10,7 +10,6 @@ import {
   Github,
   Linkedin,
   Sparkles,
-  MapPin,
   ChevronDown,
 } from "lucide-react";
 
@@ -157,7 +156,6 @@ export default function Home() {
     <main className="relative min-h-screen text-ink">
       <Nav scrolled={scrolled} />
       <Hero />
-      <Intro />
       <About />
       <Work />
       <Experience />
@@ -218,142 +216,44 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative isolate overflow-hidden bg-paper pt-40 pb-28 md:pt-56 md:pb-40"
     >
-      {/* warm radial wash */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(55% 45% at 85% 15%, rgba(122,31,43,0.16) 0%, rgba(122,31,43,0) 60%), radial-gradient(45% 40% at 8% 70%, rgba(201,165,90,0.14) 0%, rgba(201,165,90,0) 65%)",
-        }}
-      />
-      {/* dotted halftone behind the headline */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-10 top-24 h-72 w-72 dot-grid opacity-30 -z-10 hidden md:block"
-      />
+      <div className="mx-auto max-w-7xl px-6 md:px-10">
+        <div className="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-ink" />
+          Brandon Balcacer · Portfolio · 2026
+        </div>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-12 md:gap-8 md:px-10">
-        {/* LEFT: vertical jersey label + headline + intro */}
-        <div className="md:col-span-8 relative">
-          <span
-            aria-hidden
-            className="vrl absolute -left-2 top-0 hidden font-mono text-[10px] uppercase tracking-[0.4em] text-muted md:block"
-          >
-            ✻ Portfolio · 2026 · New Jersey
+        <h1 className="font-sans font-black leading-[0.88] tracking-[-0.04em] text-ink">
+          <span className="block text-[clamp(3rem,11vw,10rem)]">
+            Data, built into
           </span>
+          <span className="block text-[clamp(3rem,11vw,10rem)] italic font-serif font-medium">
+            decisions.
+          </span>
+        </h1>
 
-          <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-muted md:hidden">
-            <span className="asterisk">✻</span> Portfolio · 2026
-            <span className="inline-flex items-center gap-1 ml-2">
-              <MapPin size={12} className="text-maroon" /> NJ
-            </span>
-          </div>
-
-          <h1 className="font-display leading-[0.82] tracking-jersey text-ink">
-            <span className="block text-[clamp(3.5rem,11vw,10rem)]">
-              BRANDON
-            </span>
-            <span className="block text-[clamp(3.5rem,11vw,10rem)] text-stroke-maroon">
-              BALCACER
-            </span>
-          </h1>
-
-          <p className="mt-8 max-w-2xl font-serif text-xl md:text-2xl leading-snug text-graphite">
-            Data analyst, builder, and ex-NCAA sprinter turning{" "}
-            <span className="italic text-maroon">operational chaos</span> into
-            decisions teams actually run on.
+        <div className="mt-12 grid gap-10 md:grid-cols-12">
+          <p className="md:col-span-7 max-w-2xl text-xl md:text-2xl leading-snug text-graphite">
+            I&apos;m a data analyst and builder shipping ETL pipelines, BI
+            dashboards, and AI-assisted automations — turning messy operational
+            data into systems teams can actually run on.
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="md:col-span-5 flex flex-wrap items-end justify-start gap-3 md:justify-end">
             <a
               href="#work"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm text-cream hover:bg-maroon transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm text-paper hover:bg-graphite transition-colors"
             >
-              See selected work <ArrowUpRight size={16} />
+              Selected work <ArrowUpRight size={16} />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-paper px-6 py-3 text-sm hover:border-maroon hover:text-maroon transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper px-6 py-3 text-sm hover:border-ink hover:text-ink transition-colors"
             >
-              <Mail size={16} /> Get in touch
+              <Mail size={16} /> Contact
             </a>
-            <span className="ml-1 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-maroon animate-pulse" />
-              Available · Spring 2026
-            </span>
           </div>
         </div>
-
-        {/* RIGHT: hero photo slot — tall, framed, slightly tilted */}
-        <div className="md:col-span-4 relative">
-          <div className="relative mx-auto aspect-square w-full max-w-md rotate-[1.5deg] overflow-hidden rounded-2xl border border-line bg-paper shadow-bold md:max-w-none">
-            <Image
-              src="/track.jpg"
-              alt="Brandon Balcacer — NJAC Honorable Mention All-Conference, 100m Dash."
-              fill
-              sizes="(max-width: 768px) 90vw, 35vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Intro / About strip                                                */
-/* ------------------------------------------------------------------ */
-
-function Intro() {
-  const words = [
-    "RUNNING",
-    "BUILDING",
-    "ANALYZING",
-    "EATING",
-    "SHIPPING",
-    "RUNNING",
-    "BUILDING",
-    "ANALYZING",
-    "EATING",
-    "SHIPPING",
-  ];
-  const stats = [
-    { k: "Records cleaned", v: "1,600+" },
-    { k: "POS systems", v: "12+" },
-    { k: "Pipelines shipped", v: "5-phase" },
-    { k: "100m PR", v: "≈ 11.0s" },
-  ];
-  return (
-    <section className="border-y border-line bg-ink text-cream">
-      {/* Marquee */}
-      <div className="overflow-hidden border-b border-cream/10 py-5">
-        <div className="flex w-max animate-marquee whitespace-nowrap font-display text-3xl md:text-4xl tracking-jersey">
-          {words.concat(words).map((w, i) => (
-            <span key={i} className="mx-8 inline-flex items-center gap-8">
-              {w}
-              <span className="text-gold">✻</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Stats strip */}
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-10 md:grid-cols-4 md:px-10">
-        {stats.map((s) => (
-          <div key={s.k} className="flex flex-col">
-            <span className="font-display text-4xl md:text-5xl tracking-jersey text-cream">
-              {s.v}
-            </span>
-            <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-gold">
-              {s.k}
-            </span>
-          </div>
-        ))}
       </div>
     </section>
   );
@@ -365,104 +265,62 @@ function Intro() {
 
 function About() {
   return (
-    <section id="about" className="relative border-b border-line">
+    <section id="about" className="relative border-b border-line bg-paper">
       <div className="mx-auto max-w-7xl px-6 py-28 md:px-10 md:py-36">
         <SectionHeading
           index="01"
           eyebrow="About"
-          title="Builder, runner, curious eater."
-          lede="I work with data by day and chase finish lines — and new menus — on the side."
+          title="Analyst, builder, and the occasional sprinter."
+          lede="I work with data, ship pragmatic tools, and try to keep a little of everything else outside the screen."
         />
 
-        {/* Two big asymmetric photos, then text below */}
-        <div className="grid gap-6 md:grid-cols-12 md:gap-8">
-          <figure className="md:col-span-7 group relative overflow-hidden rounded-3xl border border-line bg-paper shadow-bold">
-            <div className="relative aspect-square">
-              <Image
-                src="/track.jpg"
-                alt="Brandon Balcacer — NJAC Honorable Mention All-Conference, 100m Dash."
-                fill
-                sizes="(max-width: 768px) 100vw, 60vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            </div>
-          </figure>
+        <div className="grid gap-10 md:grid-cols-12 md:gap-12">
+          <Reveal delay={0.1} className="md:col-span-7 space-y-5 text-base md:text-lg leading-relaxed text-graphite">
+            <p>
+              I&apos;m a data analyst and builder studying at Ramapo College of
+              New Jersey. My work focuses on turning messy operational data —
+              spreadsheets, tangled APIs, unstructured records — into clean ETL
+              pipelines, BI dashboards, and AI-assisted automations that teams
+              can actually run on.
+            </p>
+            <p>
+              At the MTA I&apos;m engineering Python and SQL workflows that
+              standardize 1,600+ operational records, building Power BI
+              dashboards on top of them, and automating manual paperwork with
+              Power Automate, Power Apps, and SharePoint.
+            </p>
+            <p>
+              Outside of work I&apos;m a former NCAA track &amp; field athlete
+              at Ramapo (NJAC Honorable Mention All-Conference, 100m dash). I
+              still run and lift almost daily, and I spend a lot of weekends
+              trying new restaurants around NJ and NYC.
+            </p>
+          </Reveal>
 
-          <figure className="md:col-span-5 group relative overflow-hidden rounded-3xl border border-line bg-paper shadow-bold md:translate-y-10">
-            <div className="relative aspect-[3/4]">
-              <Image
-                src="/mta.jpg"
-                alt="Brandon at the MTA New York City Transit office during his Data Analytics Internship."
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            </div>
-            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 via-ink/30 to-transparent p-6 text-cream">
-              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-gold">
-                MTA · NYC Transit
+          <Reveal delay={0.2} className="md:col-span-5 grid grid-cols-2 gap-4">
+            <figure className="overflow-hidden rounded-2xl border border-line bg-paper">
+              <div className="relative aspect-square">
+                <Image
+                  src="/track.jpg"
+                  alt="Brandon Balcacer — NJAC Honorable Mention All-Conference, 100m Dash."
+                  fill
+                  sizes="(max-width: 768px) 50vw, 22vw"
+                  className="object-cover"
+                />
               </div>
-              <div className="mt-1 font-display text-3xl tracking-jersey">
-                DATA ANALYTICS INTERN
+            </figure>
+            <figure className="overflow-hidden rounded-2xl border border-line bg-paper md:translate-y-8">
+              <div className="relative aspect-[3/4]">
+                <Image
+                  src="/mta.jpg"
+                  alt="Brandon at the MTA New York City Transit office during his Data Analytics Internship."
+                  fill
+                  sizes="(max-width: 768px) 50vw, 22vw"
+                  className="object-cover"
+                />
               </div>
-            </figcaption>
-          </figure>
-        </div>
-
-        {/* Personal copy */}
-        <div className="mt-16 grid gap-10 md:grid-cols-12">
-          <div className="md:col-span-1 hidden md:block">
-            <span className="font-display text-5xl text-maroon/40">01</span>
-          </div>
-          <div className="md:col-span-7 space-y-5 text-base md:text-lg leading-relaxed text-graphite">
-            <p>
-              I&apos;m a{" "}
-              <span className="text-ink font-medium">data analyst and builder</span>{" "}
-              studying at Ramapo College of New Jersey, where I also competed as
-              an{" "}
-              <span className="text-ink font-medium">
-                NCAA track &amp; field athlete
-              </span>{" "}
-              — sprinting the 100m dash and earning NJAC Honorable Mention
-              All-Conference recognition.
-            </p>
-            <p>
-              That same drive shows up in my work. I love taking messy
-              spreadsheets, tangled APIs, and unstructured operational data and
-              pulling them into clear, repeatable systems. Right now that looks
-              like Python ETL pipelines, Power BI dashboards, and AI-assisted
-              automations at the MTA.
-            </p>
-            <p>
-              Outside of work, I&apos;m still running and lifting almost daily —
-              staying fit is non-negotiable. I&apos;m also a serial menu-explorer:
-              trying new restaurants, new cuisines, and new recipes is one of my
-              favorite ways to unwind.
-            </p>
-          </div>
-          <aside className="md:col-span-4 self-start rounded-2xl border border-line bg-cream p-6">
-            <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.25em] text-maroon">
-              The shortlist
-            </div>
-            <ul className="space-y-3 font-serif text-lg text-ink">
-              <li className="flex justify-between gap-4">
-                <span>Sport</span>
-                <span className="text-graphite">100m / 200m</span>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>School</span>
-                <span className="text-graphite">Ramapo, NJ</span>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>Stack</span>
-                <span className="text-graphite">Python · SQL · BI</span>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>Off the clock</span>
-                <span className="text-graphite">Lifting · Eating</span>
-              </li>
-            </ul>
-          </aside>
+            </figure>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -472,6 +330,32 @@ function About() {
 /* ------------------------------------------------------------------ */
 /*  Section heading                                                    */
 /* ------------------------------------------------------------------ */
+
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28, clipPath: "inset(0 0 100% 0)" }}
+      whileInView={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.9,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function SectionHeading({
   index,
@@ -485,21 +369,21 @@ function SectionHeading({
   lede?: string;
 }) {
   return (
-    <div className="mb-14 max-w-3xl">
+    <Reveal className="mb-14 max-w-3xl">
       <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
-        <span className="text-clay">{index}</span>
+        <span className="text-ink">{index}</span>
         <span className="h-px w-10 bg-rule" />
         {eyebrow}
       </div>
-      <h2 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight text-ink">
+      <h2 className="font-sans font-semibold text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em] text-ink">
         {title}
       </h2>
       {lede && (
-        <p className="mt-4 max-w-2xl text-base md:text-lg text-graphite">
+        <p className="mt-5 max-w-2xl text-base md:text-lg text-graphite">
           {lede}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }
 
