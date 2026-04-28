@@ -76,3 +76,28 @@ body {
   background-image: radial-gradient(rgba(22, 16, 14, 0.18) 1px, transparent 1px);
   background-size: 14px 14px;
 }
+
+/* Ocean sheen — a soft diagonal light pass across the blue silk hero */
+@keyframes sheen {
+  0% {
+    transform: translateX(-30%) skewX(-12deg);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(30%) skewX(-12deg);
+    opacity: 0.2;
+  }
+}
+
+/* Slow ambient drift on the ocean layer */
+@keyframes oceanDrift {
+  0%, 100% {
+    transform: scale(1.2) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.24) translate3d(-1.5%, 1.2%, 0);
+  }
+}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUpRight,
@@ -171,25 +171,33 @@ export default function Home() {
 /* ------------------------------------------------------------------ */
 
 function Nav({ scrolled }: { scrolled: boolean }) {
+  const onLight = scrolled;
   return (
     <header
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-ivory/80 backdrop-blur border-b border-line"
+        onLight
+          ? "bg-paper/85 backdrop-blur border-b border-line"
           : "bg-transparent border-b border-transparent",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
         <a href="#top" className="flex items-center gap-2 group">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-clay text-cream text-sm font-serif italic">
-            B
-          </span>
-          <span className="font-serif text-base text-ink group-hover:text-clay transition-colors">
+          <span
+            className={[
+              "font-serif text-base transition-colors",
+              onLight ? "text-ink group-hover:text-graphite" : "text-paper",
+            ].join(" ")}
+          >
             Brandon Balcacer
           </span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-graphite">
+        <nav
+          className={[
+            "hidden md:flex items-center gap-8 text-sm transition-colors",
+            onLight ? "text-graphite" : "text-paper/90",
+          ].join(" ")}
+        >
           {NAV.map((n) => (
             <a key={n.href} href={n.href} className="link-under">
               {n.label}
@@ -198,13 +206,114 @@ function Nav({ scrolled }: { scrolled: boolean }) {
         </nav>
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper px-4 py-2 text-sm shadow-soft hover:bg-clay hover:text-cream hover:border-clay transition-colors"
+          className={[
+            "hidden md:inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors",
+            onLight
+              ? "border border-ink/15 bg-paper text-ink hover:border-ink"
+              : "border border-paper/40 bg-paper/10 text-paper backdrop-blur hover:bg-paper/20",
+          ].join(" ")}
         >
           Get in touch
           <ArrowUpRight size={14} />
         </a>
       </div>
     </header>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Ocean — flowing blue silk background that reacts to the cursor     */
+/* ------------------------------------------------------------------ */
+
+function Ocean() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    // target = where the cursor wants the warp center to be (0..1)
+    // current = lerped value so motion is calm/dampened
+    let tx = 0.5;
+    let ty = 0.4;
+    let cx = 0.5;
+    let cy = 0.4;
+    let t = 0;
+    let raf = 0;
+
+    const onMove = (e: MouseEvent) => {
+      tx = e.clientX / window.innerWidth;
+      ty = e.clientY / window.innerHeight;
+    };
+
+    const loop = () => {
+      // soft lerp — small factor = slower, more calm
+      cx += (tx - cx) * 0.035;
+      cy += (ty - cy) * 0.035;
+      t += 0.0035;
+
+      // ambient orbiting blobs (so it's never still even without a cursor)
+      const ax = 30 + Math.sin(t * 1.1) * 22;
+      const ay = 35 + Math.cos(t * 0.8) * 20;
+      const bx = 70 + Math.cos(t * 0.7) * 24;
+      const by = 70 + Math.sin(t * 1.0) * 22;
+
+      el.style.setProperty("--mx", `${cx * 100}%`);
+      el.style.setProperty("--my", `${cy * 100}%`);
+      el.style.setProperty("--ax", `${ax}%`);
+      el.style.setProperty("--ay", `${ay}%`);
+      el.style.setProperty("--bx", `${bx}%`);
+      el.style.setProperty("--by", `${by}%`);
+
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener("mousemove", onMove);
+    raf = requestAnimationFrame(loop);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <div aria-hidden className="absolute inset-0 overflow-hidden">
+      {/* core silk layer — blurred orbiting radial gradients */}
+      <div
+        ref={ref}
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(40% 35% at var(--mx, 50%) var(--my, 40%), rgba(140,170,255,0.95) 0%, transparent 60%),
+            radial-gradient(45% 45% at var(--ax, 30%) var(--ay, 35%), rgba(60,100,255,0.9) 0%, transparent 65%),
+            radial-gradient(55% 50% at var(--bx, 70%) var(--by, 70%), rgba(20,50,200,0.95) 0%, transparent 70%),
+            linear-gradient(135deg, #0a1ec0 0%, #1c3df0 45%, #3a5cff 100%)
+          `,
+          filter: "blur(70px) saturate(1.15)",
+          animation: "oceanDrift 22s ease-in-out infinite",
+          willChange: "transform",
+        }}
+      />
+      {/* soft diagonal sheen pass */}
+      <div
+        className="pointer-events-none absolute inset-0 mix-blend-screen"
+        style={{
+          background:
+            "linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.45) 50%, transparent 65%)",
+          animation: "sheen 16s ease-in-out infinite",
+          willChange: "transform, opacity",
+        }}
+      />
+      {/* very faint grain to break up banding */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px)",
+          backgroundSize: "3px 3px",
+        }}
+      />
+    </div>
   );
 }
 
@@ -216,45 +325,29 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate overflow-hidden bg-paper pt-40 pb-28 md:pt-56 md:pb-40"
+      className="relative isolate flex min-h-screen items-center justify-center overflow-hidden text-paper"
     >
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="mb-8 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-ink" />
+      <Ocean />
+
+      {/* top kicker */}
+      <div className="absolute top-28 left-1/2 -translate-x-1/2 px-6 text-center">
+        <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-paper/85">
           Brandon Balcacer · Portfolio · 2026
-        </div>
-
-        <h1 className="font-sans font-black leading-[0.88] tracking-[-0.04em] text-ink">
-          <span className="block text-[clamp(3rem,11vw,10rem)]">
-            Data, built into
-          </span>
-          <span className="block text-[clamp(3rem,11vw,10rem)] italic font-serif font-medium">
-            decisions.
-          </span>
-        </h1>
-
-        <div className="mt-12 grid gap-10 md:grid-cols-12">
-          <p className="md:col-span-7 max-w-2xl text-xl md:text-2xl leading-snug text-graphite">
-            I&apos;m a data analyst and builder shipping ETL pipelines, BI
-            dashboards, and AI-assisted automations — turning messy operational
-            data into systems teams can actually run on.
-          </p>
-          <div className="md:col-span-5 flex flex-wrap items-end justify-start gap-3 md:justify-end">
-            <a
-              href="#work"
-              className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm text-paper hover:bg-graphite transition-colors"
-            >
-              Selected work <ArrowUpRight size={16} />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper px-6 py-3 text-sm hover:border-ink hover:text-ink transition-colors"
-            >
-              <Mail size={16} /> Contact
-            </a>
-          </div>
-        </div>
+        </p>
       </div>
+
+      {/* centered headline */}
+      <h1 className="relative z-10 px-6 text-center font-serif text-[clamp(2.75rem,8vw,7.5rem)] leading-[1.05] tracking-[-0.01em] text-paper">
+        <span className="italic">Transforming</span> Data,
+        <br />
+        Building <span className="italic">Decisions</span>
+      </h1>
+
+      {/* bottom descriptor */}
+      <p className="absolute bottom-12 left-1/2 w-full max-w-2xl -translate-x-1/2 px-6 text-center text-sm md:text-base text-paper/85">
+        A New Jersey&ndash;based data analyst &amp; builder shipping ETL
+        pipelines, BI dashboards, and AI-assisted automations.
+      </p>
     </section>
   );
 }
