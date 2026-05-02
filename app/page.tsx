@@ -25,6 +25,8 @@ const NAV = [
   { label: "Contact", href: "#contact" },
 ];
 
+const EMAIL = "balcacerrule@gmail.com";
+
 const EXPERIENCE = [
   {
     role: "Data Analytics Intern",
@@ -42,14 +44,27 @@ const EXPERIENCE = [
   },
 ];
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  year: string;
+  href: string;
+  role: string;
+  summary: string;
+  tags: string[];
+  problem: string;
+  approach: string[];
+  outcome: string;
+  stack: string[];
+};
+
+const PROJECTS: Project[] = [
   {
     title: "B2B Lead Generator",
     year: "2026",
     href: "https://github.com/BrandonBalcacer",
-    description:
-      "A 5-phase automated outreach pipeline for Archive Studio Marketing — sources, scores, and enriches B2B leads using Google Places, Firecrawl, and Hunter.io, then uses Claude to draft personalized emails with smart send-time scheduling. Built to turn cold prospecting into a repeatable, revenue-driving system.",
     role: "End-to-end build",
+    summary:
+      "A 5-phase automated outreach pipeline for Archive Studio Marketing — sources, scores, and enriches B2B leads, then uses Claude to draft personalized emails with smart send-time scheduling.",
     tags: ["Python", "APIs", "Claude AI", "Automation"],
     details: {
       problem:
@@ -69,9 +84,9 @@ const PROJECTS = [
     title: "Tasteful Sweets Dashboard",
     year: "2026",
     href: "https://github.com/BrandonBalcacer",
-    description:
-      "An end-to-end operations and analytics dashboard running live for an active bakery business. Ingests Shopify orders via HMAC-verified webhooks, reconciles recipe and expense data in SQLite, and auto-generates weekly production schedules, shopping lists, and per-product profit margin reports — turning raw order data into the decisions that keep the bakery profitable.",
     role: "Production system",
+    summary:
+      "A live operations and analytics dashboard for an active bakery — ingests Shopify orders via HMAC-verified webhooks, reconciles recipe and expense data, and turns it into the decisions that keep the bakery profitable.",
     tags: ["Python", "Flask", "SQLite", "pandas"],
     details: {
       problem:
@@ -494,6 +509,8 @@ function SectionHeading({
 /* ------------------------------------------------------------------ */
 
 function Work() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section id="work" className="mx-auto max-w-6xl px-6 py-28 md:px-10 md:py-36">
       <SectionHeading
@@ -503,10 +520,16 @@ function Work() {
         lede="A small set of recent builds — production systems, AI-assisted pipelines, and analytics surfaces."
       />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {PROJECTS.map((p) => (
-          <ProjectCard key={p.title} project={p} />
-        ))}
+        <div className="space-y-4">
+          {PROJECTS.map((p, i) => (
+            <ProjectCard
+              key={p.title}
+              project={p}
+              isOpen={openIndex === i}
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -514,8 +537,12 @@ function Work() {
 
 function ProjectCard({
   project,
+  isOpen,
+  onToggle,
 }: {
-  project: (typeof PROJECTS)[number];
+  project: Project;
+  isOpen: boolean;
+  onToggle: () => void;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -610,11 +637,28 @@ function ProjectCard({
         )}
       </AnimatePresence>
 
-      <div className="mt-6 flex flex-wrap gap-2">
-        {project.tags.map((t) => (
-          <span
-            key={t}
-            className="rounded-full border border-line bg-cream px-3 py-1 font-mono text-[11px] text-graphite"
+        <span
+          className={[
+            "mt-1 grid h-10 w-10 shrink-0 place-items-center rounded-full border transition-all",
+            isOpen
+              ? "bg-clay text-cream border-clay rotate-180"
+              : "border-line text-graphite group-hover:border-clay group-hover:text-clay",
+          ].join(" ")}
+          aria-hidden
+        >
+          {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
           >
             {t}
           </span>
@@ -642,48 +686,45 @@ function Experience() {
           lede="A mix of analytics, automation, and operations — bringing structure to messy data and messy systems."
         />
 
-        <ol className="relative">
-          <span
-            aria-hidden
-            className="absolute left-2 top-2 bottom-2 w-px bg-rule md:left-3"
-          />
-          {EXPERIENCE.map((e, i) => (
-            <li key={i} className="relative pl-10 md:pl-14 pb-12 last:pb-0">
-              <span className="absolute left-0 top-2 grid h-5 w-5 place-items-center rounded-full border border-clay bg-ivory">
-                <span className="h-2 w-2 rounded-full bg-clay" />
-              </span>
+      <ol className="relative">
+        <span
+          aria-hidden
+          className="absolute left-2 top-2 bottom-2 w-px bg-rule md:left-3"
+        />
+        {EXPERIENCE.map((e, i) => (
+          <li key={i} className="relative pl-10 md:pl-14 pb-12 last:pb-0">
+            <span className="absolute left-0 top-2 grid h-5 w-5 place-items-center rounded-full border border-clay bg-ivory">
+              <span className="h-2 w-2 rounded-full bg-clay" />
+            </span>
 
-              <div className="grid gap-6 md:grid-cols-12">
-                <div className="md:col-span-4">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-clay">
-                    {e.period}
-                  </div>
-                  <h3 className="mt-2 font-serif text-2xl text-ink">
-                    {e.role}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted">{e.org}</p>
+            <div className="grid gap-6 md:grid-cols-12">
+              <div className="md:col-span-4">
+                <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-clay">
+                  {e.period}
                 </div>
+                <h3 className="mt-2 font-serif text-2xl text-ink">{e.role}</h3>
+                <p className="mt-1 text-sm text-muted">{e.org}</p>
+              </div>
 
-                <div className="md:col-span-8">
-                  <p className="text-[15px] leading-relaxed text-graphite">
-                    {e.body}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {e.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-line bg-paper px-3 py-1 font-mono text-[11px] text-graphite"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
+              <div className="md:col-span-8">
+                <p className="text-[15px] leading-relaxed text-graphite">
+                  {e.body}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {e.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full border border-line bg-paper px-3 py-1 font-mono text-[11px] text-graphite"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+            </div>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
@@ -702,25 +743,26 @@ function Skills() {
         lede="The stack I use to move from question, to data, to decision."
       />
 
-      <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
-        {SKILLS.map((s) => (
-          <div key={s.group} className="bg-paper p-7 md:p-8">
-            <div className="mb-5 flex items-center gap-2">
-              <Sparkles size={14} className="text-clay" />
-              <h3 className="font-serif text-xl text-ink">{s.group}</h3>
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
+          {SKILLS.map((s) => (
+            <div key={s.group} className="bg-paper p-7 md:p-8">
+              <div className="mb-5 flex items-center gap-2">
+                <Sparkles size={14} className="text-clay" />
+                <h3 className="font-serif text-xl text-ink">{s.group}</h3>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {s.items.map((it) => (
+                  <li
+                    key={it}
+                    className="rounded-full border border-line bg-cream px-3 py-1.5 font-mono text-[12px] text-graphite transition-colors hover:border-clay hover:bg-clay hover:text-cream"
+                  >
+                    {it}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="flex flex-wrap gap-2">
-              {s.items.map((it) => (
-                <li
-                  key={it}
-                  className="rounded-full border border-line bg-cream px-3 py-1.5 font-mono text-[12px] text-graphite transition-colors hover:border-clay hover:bg-clay hover:text-cream"
-                >
-                  {it}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
