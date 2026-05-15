@@ -32,9 +32,9 @@ const display = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Brandon Balcacer — Data Analyst & Builder",
+  title: "Brandon Balcacer — Need a Solution? I'm the answer.",
   description:
-    "Brandon Balcacer is a data analyst and builder turning operational data into decisions. Selected work, experience, and skills.",
+    "Brandon Balcacer — Data analyst and builder shipping ETL pipelines, BI dashboards, and AI-assisted automations.",
 };
 
 export default function RootLayout({
@@ -47,7 +47,7 @@ export default function RootLayout({
       lang="en"
       className={`${serif.variable} ${sans.variable} ${mono.variable} ${display.variable}`}
     >
-      <body className="font-sans antialiased bg-ivory text-ink">
+      <body className="font-sans antialiased bg-bg text-ink">
         {children}
         <Analytics
           mode={process.env.NODE_ENV === "production" ? "production" : "development"}

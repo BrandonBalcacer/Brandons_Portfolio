@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --bg: #ffffff;
-  --ink: #0a0a0a;
-  --accent: #0a0a0a;
+  --bg: #050505;
+  --ink: #FAFAFA;
+  --accent: #3B82F6;
 }
 
 html,
@@ -18,32 +18,10 @@ body {
 }
 
 ::selection {
-  background: var(--ink);
+  background: var(--accent);
   color: #ffffff;
 }
 
-/* Animated hairline that sweeps under section headings */
-@keyframes drawLine {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-.draw-line {
-  transform-origin: left;
-  animation: drawLine 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-/* Asterisk mark used as accent */
-.asterisk {
-  color: var(--maroon);
-  display: inline-block;
-}
-
-/* Underline-on-hover link */
 .link-under {
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0% 1px;
@@ -55,49 +33,28 @@ body {
   background-size: 100% 1px;
 }
 
-/* Headline outline / stroke effect (used for hero accents) */
-.text-stroke {
-  -webkit-text-stroke: 1px var(--ink);
-  color: transparent;
-}
-.text-stroke-maroon {
-  -webkit-text-stroke: 1px var(--maroon);
-  color: transparent;
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
-/* Vertically running label */
-.vrl {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+/* Subtle film grain to break up the flat black */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: screen;
 }
 
-/* Halftone dot pattern overlay (athletic-feel texture) */
-.dot-grid {
-  background-image: radial-gradient(rgba(22, 16, 14, 0.18) 1px, transparent 1px);
-  background-size: 14px 14px;
-}
-
-/* Ocean sheen — a soft diagonal light pass across the blue silk hero */
-@keyframes sheen {
-  0% {
-    transform: translateX(-30%) skewX(-12deg);
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.55;
-  }
-  100% {
-    transform: translateX(30%) skewX(-12deg);
-    opacity: 0.2;
-  }
-}
-
-/* Slow ambient drift on the ocean layer */
-@keyframes oceanDrift {
-  0%, 100% {
-    transform: scale(1.2) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.24) translate3d(-1.5%, 1.2%, 0);
-  }
+/* Slow ambient drift used by ornamental elements */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-1%, 1.5%, 0); }
 }
