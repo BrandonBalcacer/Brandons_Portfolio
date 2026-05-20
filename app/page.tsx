@@ -1,171 +1,215 @@
 import Link from "next/link";
-import { ChevronDown, ArrowUpRight } from 'lucide-react';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-mocha text-black font-mono selection:bg-black selection:text-white">
-      
-      {/* 1. This the navigation bar tiwn  */}
-      <nav className="fixed top-0 left-0 w-full p-8 flex justify-between items-start z-50 mix-blend-difference text-black">
-        <div className="flex flex-col gap-1 group cursor-pointer">
-          <div className="border border-black px-3 py-1 text-sm font-bold w-fit group-hover:bg-black group-hover:text-white transition-colors">
-            01
-          </div>
-          <span className="text-xs font-bold tracking-widest mt-1">RESUME</span>
-        </div>
-        <button className="text-xl hover:opacity-50 transition-opacity">
-          ☾
-        </button>
-      </nav>
+    <main className="min-h-screen bg-white text-neutral-900">
+      <div className="max-w-2xl mx-auto px-6 py-16 md:py-24">
 
-      {/* 2. this is for the numbers on the right side  */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 hidden md:flex flex-col gap-4 text-xs font-bold text-gray-400 mix-blend-multiply">
-        <a href="#hero" className="hover:text-black transition-colors">1</a>
-        <a href="#experience" className="hover:text-black transition-colors">2</a>
-        <a href="#projects" className="hover:text-black transition-colors">3</a>
-        <a href="#skills" className="hover:text-black transition-colors">4</a>
-      </div>
+        <header className="mb-16">
+          <h1 className="text-2xl font-semibold mb-3">Brandon Balcacer</h1>
+          <p className="text-neutral-600 leading-relaxed">
+            Information Technology Management student at Ramapo College of New Jersey.
+            Recently a data analytics intern at the MTA — joining Samsung SDS America
+            this summer for cloud and security. I build data pipelines, dashboards, and
+            small full-stack tools.
+          </p>
+          <p className="text-sm text-neutral-500 mt-3">Hackensack, NJ</p>
+        </header>
 
-      {/* 3. hero part */}
-      <section id="hero" className="h-screen flex flex-col justify-center items-center text-center px-4 relative">
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter uppercase mb-6 leading-none">
-          Brandon<br />Balcacer
-        </h1>
-        <p className="text-sm md:text-lg tracking-widest uppercase text-gray-600">
-          Ramapo College of New Jersey
-        </p>
-        <div className="absolute bottom-12 animate-bounce">
-          <ChevronDown size={32} />
-        </div>
-      </section>
-
-      <div className="max-w-6xl mx-auto px-6 md:px-12 pb-24 space-y-32">
-        
-        {/* 4. this is why my experience goes twin  */}
-        <section id="experience">
-           <div className="border border-black px-3 py-1 text-sm font-bold w-fit mb-8 uppercase">
-            02 Experience
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* MTA DATA*/}
-            <div className="border border-black p-6 md:p-8 flex flex-col justify-between h-full hover:bg-white transition-colors">
-              <div className="mb-8">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold uppercase max-w-[70%]">Technology Support Intern</h3>
-                  <span className="text-xs font-bold uppercase border border-black px-2 py-1">Jan — May 2026</span>
-                </div>
-                <p className="text-lg uppercase tracking-wide mb-6 text-gray-600">MTA (Metropolitan Transportation Authority)</p>
-                <p className="text-sm leading-relaxed text-gray-800 uppercase">
-                  Developing automated dashboards using Power Apps and Power BI to digitize manual operational processes. 
-                  Architected a SharePoint Communication Site to centralize technical documentation and improve cross-team collaboration.
-                </p>
+        <section className="mb-16">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-6 tracking-wide">
+            Experience
+          </h2>
+          <ul className="space-y-8">
+            <li>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="font-medium">Cloud &amp; Security Lab Technician Intern</span>
+                <span className="text-sm text-neutral-400 shrink-0">Jun – Aug 2026</span>
               </div>
-            </div>
-
-            {/* TARGET DATA */}
-            <div className="border border-black p-6 md:p-8 flex flex-col justify-between h-full hover:bg-white transition-colors">
-               <div className="mb-8">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-lg font-bold uppercase">Team Member</h3>
-                  <span className="text-xs font-bold uppercase border border-black px-2 py-1">2022 — Present</span>
-                </div>
-                <p className="text-lg uppercase tracking-wide mb-6 text-gray-600">Target</p>
-                <p className="text-sm leading-relaxed text-gray-800 uppercase">
-                  Provided coverage for Front-End Team Lead roles, resolving technical challenges with POS systems and optimizing order fulfillment. 
-                  Streamlined departmental workflows and trained team members on digital tools to ensure 99% order accuracy.
-                </p>
+              <p className="text-sm text-neutral-500 mb-2">
+                Samsung SDS America &middot; MSP Operations
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Incoming. Selected for the MSP Lab team to build sandbox environments for
+                cloud and security accelerators across four MSP offerings. Hands-on with
+                cloud-native infrastructure, security frameworks, infrastructure as code,
+                monitoring, and FinOps cost optimization.
+              </p>
+            </li>
+            <li>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="font-medium">Data Analytics Intern</span>
+                <span className="text-sm text-neutral-400 shrink-0">Jan – May 2026</span>
               </div>
-            </div>
-
-          </div>
+              <p className="text-sm text-neutral-500 mb-2">
+                Metropolitan Transportation Authority &middot; Elevators &amp; Escalators
+              </p>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Built a Python rule-based pipeline using regex grammars and domain heuristics
+                to auto-classify thousands of unstructured monthly entrapment incident
+                reports, validated against a labeled corpus with a custom accuracy harness.
+                Shipped a multi-page Power BI executive report tracking elevator and
+                escalator availability across six MTA zones, authoring Power Query M to
+                unpivot source data going back to 2016. Designed a 12-month SKU-level parts
+                demand forecasting dashboard projecting $35.92M annual cost using Croston,
+                SBA, and exponential smoothing, presented to division stakeholders.
+                Co-developed a full-stack multi-document signing platform in Power Apps
+                with SharePoint and Power Automate backing five document types.
+              </p>
+            </li>
+          </ul>
         </section>
 
-        {/* where my projects be at twin */}
-        <section id="projects">
-           <div className="border border-black px-3 py-1 text-sm font-bold w-fit mb-8 uppercase">
-            03 Selected Works
-          </div>
-
-          <div className="grid gap-12">
-            {/* it help desk ticketing system project */}
-            <Link href="https://github.com/BrandonBalcacer/IT_Ticketing_System" target="_blank" className="group block border-t border-black pt-8">
-              <div className="flex justify-between items-start mb-4">
-                 <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:opacity-60 transition-opacity flex items-center gap-4">
-                  IT Help Desk <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h2>
-                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">Oct 2025</span>
+        <section className="mb-16">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-6 tracking-wide">
+            Projects
+          </h2>
+          <ul className="space-y-6">
+            <li>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="font-medium">Tasteful Sweets — Bakery Operations Dashboard</span>
+                <span className="text-sm text-neutral-400 shrink-0">In production</span>
               </div>
-              
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                   Full-stack ticketing platform with Role-Based Access Control and automated activity logging.
-                 </p>
-                 <div className="flex gap-2 text-xs font-bold">
-                   <span className="border border-black px-2 py-1 uppercase">Python</span>
-                   <span className="border border-black px-2 py-1 uppercase">Flask</span>
-                   <span className="border border-black px-2 py-1 uppercase">SQL</span>
-                 </div>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                End-to-end Python/Flask data pipeline ingesting Shopify orders via webhooks
+                and Admin API backfills. SQLite schema joining orders, recipes, and expenses
+                to generate weekly production schedules, shopping lists, and per-product
+                profit margin reports. Currently running for an active bakery business.
+              </p>
+              <p className="text-xs text-neutral-400 mt-1">
+                Python, Flask, SQLite, pandas
+              </p>
+            </li>
+            <li>
+              <div className="flex items-baseline justify-between gap-4 mb-1">
+                <span className="font-medium">Archive Studio — B2B Lead Generation Pipeline</span>
+                <span className="text-sm text-neutral-400 shrink-0">2026</span>
               </div>
-            </Link>
-
-            {/* Static AWS cloud site */}
-             <Link href="https://brandonsbig-cloudbucket111.s3.us-east-2.amazonaws.com/index.html" target="_blank" className="group block border-t border-black pt-8">
-              <div className="flex justify-between items-start mb-4">
-                 <h2 className="text-3xl md:text-5xl font-bold uppercase group-hover:opacity-60 transition-opacity flex items-center gap-4">
-                  Cloud Infrastructure <ArrowUpRight className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </h2>
-                <span className="text-xs font-bold border border-black px-2 py-1 uppercase">Sept 2025</span>
-              </div>
-              
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-                 <p className="max-w-lg text-gray-600 text-sm uppercase leading-relaxed">
-                   Secure static site deployment via AWS S3 & CloudFront with custom IAM policies.
-                 </p>
-                 <div className="flex gap-2 text-xs font-bold">
-                   <span className="border border-black px-2 py-1 uppercase">AWS S3</span>
-                   <span className="border border-black px-2 py-1 uppercase">CloudFront</span>
-                 </div>
-              </div>
-            </Link>
-          </div>
-        </section>
-
-        {/* super duper important skills fr */}
-        <section id="skills">
-          <div className="border border-black px-3 py-1 text-sm font-bold w-fit mb-8 uppercase">
-            04 Skills
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* i speak many languages call me international */}
-            <div className="border border-black p-8">
-              <h3 className="text-lg font-bold uppercase mb-6">Languages</h3>
-              <div className="flex flex-wrap gap-3">
-                {["Python", "JavaScript", "TypeScript", "SQL", "CSS"].map((skill) => (
-                  <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
-                    {skill}
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Five-phase Python pipeline integrating Google Places, Firecrawl, Hunter.io,
+                and Claude AI to source, score, enrich, and contact leads. Includes a
+                prompt system with smart send-time scheduling for personalized outreach.
+              </p>
+              <p className="text-xs text-neutral-400 mt-1">
+                Python, APIs, Claude AI
+              </p>
+            </li>
+            <li>
+              <Link
+                href="https://github.com/BrandonBalcacer/IT_Ticketing_System"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <div className="flex items-baseline justify-between gap-4 mb-1">
+                  <span className="font-medium group-hover:text-accent transition-colors">
+                    IT Help Desk Ticketing System
                   </span>
-                ))}
-              </div>
-            </div>
+                  <span className="text-sm text-neutral-400 shrink-0">Oct 2025</span>
+                </div>
+                <p className="text-sm text-neutral-600 leading-relaxed">
+                  Full-stack ticketing platform with role-based access control and
+                  automated activity logging.
+                </p>
+                <p className="text-xs text-neutral-400 mt-1">
+                  Python, Flask, SQL
+                </p>
+              </Link>
+            </li>
+          </ul>
+        </section>
 
-            {/* also known as the LOCKED IN AREA */}
-            <div className="border border-black p-8">
-              <h3 className="text-lg font-bold uppercase mb-6">Focus Areas</h3>
-              <div className="flex flex-wrap gap-3">
-                 {["Software Development", "Data Analytics"].map((skill) => (
-                  <span key={skill} className="border border-black px-3 py-2 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-default">
-                    {skill}
-                  </span>
-                ))}
-              </div>
+        <section className="mb-16">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-6 tracking-wide">
+            Skills
+          </h2>
+          <dl className="space-y-3 text-sm">
+            <div className="flex gap-4">
+              <dt className="text-neutral-500 shrink-0 w-32">Languages &amp; Data</dt>
+              <dd className="text-neutral-700">
+                Python, SQL, DAX, PowerFx, Power Query M, JavaScript, HTML/CSS
+              </dd>
             </div>
+            <div className="flex gap-4">
+              <dt className="text-neutral-500 shrink-0 w-32">Analytics &amp; BI</dt>
+              <dd className="text-neutral-700">
+                Power BI, Tableau, Power Apps, Power Automate, SharePoint, ETL design,
+                time-series forecasting
+              </dd>
+            </div>
+            <div className="flex gap-4">
+              <dt className="text-neutral-500 shrink-0 w-32">Backend &amp; Cloud</dt>
+              <dd className="text-neutral-700">
+                AWS (S3, CloudFront, IAM), SQLite, Flask, REST APIs, webhooks, Git,
+                prompt engineering
+              </dd>
+            </div>
+          </dl>
+        </section>
 
+        <section className="mb-16">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-6 tracking-wide">
+            Education
+          </h2>
+          <div>
+            <div className="flex items-baseline justify-between gap-4 mb-1">
+              <span className="font-medium">Ramapo College of New Jersey</span>
+              <span className="text-sm text-neutral-400 shrink-0">Sept 2023 – Dec 2026</span>
+            </div>
+            <p className="text-sm text-neutral-600">
+              B.S. Information Technology Management. Coursework in data management,
+              data visualization, statistics, system analysis &amp; design, AI for business,
+              and networking.
+            </p>
           </div>
         </section>
+
+        <section className="mb-16">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-6 tracking-wide">
+            Honors
+          </h2>
+          <ul className="text-sm text-neutral-600 space-y-1">
+            <li>Dean&apos;s List, Fall 2024</li>
+            <li>Track &amp; Field Captain, Ramapo College</li>
+            <li>2× All-NJAC Honoree &amp; USTFCCCA Metro All-Region Sprinter</li>
+          </ul>
+        </section>
+
+        <footer className="pt-8 border-t border-neutral-200">
+          <h2 className="text-sm font-semibold text-neutral-500 mb-4 tracking-wide">
+            Connect
+          </h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <li>
+              <a
+                href="https://github.com/BrandonBalcacer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-700 hover:text-accent transition-colors"
+              >
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/brandonbalcacer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-700 hover:text-accent transition-colors"
+              >
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:balcacerrule@gmail.com"
+                className="text-neutral-700 hover:text-accent transition-colors"
+              >
+                Email
+              </a>
+            </li>
+          </ul>
+        </footer>
 
       </div>
     </main>

@@ -6,11 +6,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mocha: "#FFFFE4", // Off white background 
-        darkMocha: "#000000", // For the text
+        accent: "#2563eb",
       },
       fontFamily: {
-        mono: ["var(--font-space-mono)", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },
   },

@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* above is the imports required for tailwind to work */
-body{
-  background: #000000;
-  color: #ffffff;
+body {
+  background: #ffffff;
+  color: #111111;
+}
+
+a {
+  text-underline-offset: 3px;
 }

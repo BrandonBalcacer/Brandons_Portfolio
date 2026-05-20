@@ -1,13 +1,11 @@
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google"; // Importing the new font
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Configure the font
-const spaceMono = Space_Mono({ 
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-space-mono",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -22,8 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${spaceMono.variable} font-mono antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
