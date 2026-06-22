@@ -9,11 +9,11 @@ export default function Home() {
           <h1 className="text-2xl font-semibold mb-3">Brandon Balcacer</h1>
           <p className="text-neutral-600 leading-relaxed">
             Information Technology Management student at Ramapo College of New Jersey.
-            Recently a data analytics intern at the MTA — joining Samsung SDS America
-            this summer for cloud and security. I build data pipelines, dashboards, and
-            small full-stack tools.
+            Currently a Cloud &amp; Security Lab Technician Intern at Samsung SDS America,
+            after a data analytics internship with the MTA. I build cloud infrastructure,
+            data pipelines, dashboards, and AI-driven tools.
           </p>
-          <p className="text-sm text-neutral-500 mt-3">Hackensack, NJ</p>
+          <p className="text-sm text-neutral-500 mt-3">Hackensack, NJ &middot; (609) 401-8703</p>
         </header>
 
         <section className="mb-16">
@@ -27,13 +27,20 @@ export default function Home() {
                 <span className="text-sm text-neutral-400 shrink-0">Jun – Aug 2026</span>
               </div>
               <p className="text-sm text-neutral-500 mb-2">
-                Samsung SDS America &middot; MSP Operations
+                Samsung SDS America &middot; MSP Operations &middot; Ridgefield Park, NJ
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                Incoming. Selected for the MSP Lab team to build sandbox environments for
-                cloud and security accelerators across four MSP offerings. Hands-on with
-                cloud-native infrastructure, security frameworks, infrastructure as code,
-                monitoring, and FinOps cost optimization.
+                Architecting an AWS solution for an internal demo portal serving Samsung SDS
+                staff, external clients, and vendors: a React/TypeScript front end on S3 and
+                CloudFront, a FastAPI backend on ECS Fargate behind API Gateway, and a managed
+                database for demo metadata. Designing the security model for a multi-audience
+                portal, including TLS encryption in transit, access controls separating internal,
+                client, and vendor users, and per-environment VPC isolation so each demo runs in
+                its own sandboxed environment. Defining governance and data lifecycle strategy
+                with CloudWatch auditing and S3 lifecycle policies that archive retired prototypes
+                to Glacier. Leading the project as sole engineer — specifying all infrastructure as
+                redeployable Terraform, authoring the project charter, requirements specification,
+                and architecture diagrams, and presenting progress to engineering leadership.
               </p>
             </li>
             <li>
@@ -42,19 +49,18 @@ export default function Home() {
                 <span className="text-sm text-neutral-400 shrink-0">Jan – May 2026</span>
               </div>
               <p className="text-sm text-neutral-500 mb-2">
-                Metropolitan Transportation Authority &middot; Elevators &amp; Escalators
+                Metropolitan Transportation Authority &middot; Elevators &amp; Escalators &middot; Brooklyn, NY
               </p>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                Built a Python rule-based pipeline using regex grammars and domain heuristics
-                to auto-classify thousands of unstructured monthly entrapment incident
-                reports, validated against a labeled corpus with a custom accuracy harness.
-                Shipped a multi-page Power BI executive report tracking elevator and
-                escalator availability across six MTA zones, authoring Power Query M to
-                unpivot source data going back to 2016. Designed a 12-month SKU-level parts
-                demand forecasting dashboard projecting $35.92M annual cost using Croston,
-                SBA, and exponential smoothing, presented to division stakeholders.
-                Co-developed a full-stack multi-document signing platform in Power Apps
-                with SharePoint and Power Automate backing five document types.
+                Built a Python regex extraction pipeline that auto-classifies entrapment report
+                fields, validated against a labeled corpus and replacing a manual Excel review.
+                Developed a multi-page Power BI executive report on equipment availability across
+                6 zones using DAX and Power Query M, resolving a DAX fan-out bug that inflated
+                metrics roughly 20x on a 1,967-row dataset via a SUMX over DISTINCTCOUNT pattern.
+                Designed a 12-month demand forecasting dashboard projecting $36M+ cost across
+                380K+ units at a 91.35% fulfillment KPI. Co-built a full-stack document signing
+                application in Power Apps and Power Automate (5 document types, GCC) with a
+                SharePoint backend and automated PDF generation.
               </p>
             </li>
           </ul>
@@ -67,54 +73,39 @@ export default function Home() {
           <ul className="space-y-6">
             <li>
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="font-medium">Tasteful Sweets — Bakery Operations Dashboard</span>
-                <span className="text-sm text-neutral-400 shrink-0">In production</span>
+                <span className="font-medium">Watcher Workflows — Lead Intelligence Platform</span>
+                <span className="text-sm text-neutral-400 shrink-0">Archive Studios</span>
               </div>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                End-to-end Python/Flask data pipeline ingesting Shopify orders via webhooks
-                and Admin API backfills. SQLite schema joining orders, recipes, and expenses
-                to generate weekly production schedules, shopping lists, and per-product
-                profit margin reports. Currently running for an active bakery business.
+                Multi-stage Python pipeline that discovers, enriches, scores, and drafts outreach
+                for local business leads, publishing results to a self-contained, sortable HTML
+                dashboard. Secured the Postgres data layer with Supabase row-level security on
+                every table and a two-key access model that keeps the service role key server-side,
+                rendering all dashboard content with safe DOM methods to prevent injection.
+                Engineered cost-aware LLM orchestration with Claude models tiered by task, cached
+                system prompts, and idempotent Postgres upserts so scheduled daily runs surface
+                only new leads.
               </p>
               <p className="text-xs text-neutral-400 mt-1">
-                Python, Flask, SQLite, pandas
+                Python, Claude API, Supabase, Firecrawl
               </p>
             </li>
             <li>
               <div className="flex items-baseline justify-between gap-4 mb-1">
-                <span className="font-medium">Archive Studio — B2B Lead Generation Pipeline</span>
+                <span className="font-medium">Agent Rufus — Autonomous Daily Market Briefing Agent</span>
                 <span className="text-sm text-neutral-400 shrink-0">2026</span>
               </div>
               <p className="text-sm text-neutral-600 leading-relaxed">
-                Five-phase Python pipeline integrating Google Places, Firecrawl, Hunter.io,
-                and Claude AI to source, score, enrich, and contact leads. Includes a
-                prompt system with smart send-time scheduling for personalized outreach.
+                Autonomous AI agent on a scheduled cloud routine that performs multi-source web
+                research on markets, finance, and technology each morning and emails a synthesized
+                HTML briefing to a subscriber list. Engineered research guardrails into the agent:
+                a 48-hour recency gate, a verify-before-asserting standard with source citation, and
+                a fallback chain for live price data — delivered through the Resend API over a domain
+                secured with SPF, DKIM, and DMARC.
               </p>
               <p className="text-xs text-neutral-400 mt-1">
-                Python, APIs, Claude AI
+                Claude, Cloud Routine, Resend API
               </p>
-            </li>
-            <li>
-              <Link
-                href="https://github.com/BrandonBalcacer/IT_Ticketing_System"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <div className="flex items-baseline justify-between gap-4 mb-1">
-                  <span className="font-medium group-hover:text-accent transition-colors">
-                    IT Help Desk Ticketing System
-                  </span>
-                  <span className="text-sm text-neutral-400 shrink-0">Oct 2025</span>
-                </div>
-                <p className="text-sm text-neutral-600 leading-relaxed">
-                  Full-stack ticketing platform with role-based access control and
-                  automated activity logging.
-                </p>
-                <p className="text-xs text-neutral-400 mt-1">
-                  Python, Flask, SQL
-                </p>
-              </Link>
             </li>
           </ul>
         </section>
@@ -127,21 +118,23 @@ export default function Home() {
             <div className="flex gap-4">
               <dt className="text-neutral-500 shrink-0 w-32">Languages &amp; Data</dt>
               <dd className="text-neutral-700">
-                Python, SQL, DAX, PowerFx, Power Query M, JavaScript, HTML/CSS
+                Python, SQL, DAX, PowerFx, Power Query M, JavaScript, TypeScript, HTML/CSS
               </dd>
             </div>
             <div className="flex gap-4">
               <dt className="text-neutral-500 shrink-0 w-32">Analytics &amp; BI</dt>
               <dd className="text-neutral-700">
-                Power BI, Tableau, Power Apps, Power Automate, SharePoint, ETL design,
-                time-series forecasting
+                Power BI, Tableau, Power Apps, Power Automate, SharePoint, ETL pipeline design,
+                data cleaning, statistical analysis, forecasting
               </dd>
             </div>
             <div className="flex gap-4">
-              <dt className="text-neutral-500 shrink-0 w-32">Backend &amp; Cloud</dt>
+              <dt className="text-neutral-500 shrink-0 w-32">Cloud, Backend &amp; AI</dt>
               <dd className="text-neutral-700">
-                AWS (S3, CloudFront, IAM), SQLite, Flask, REST APIs, webhooks, Git,
-                prompt engineering
+                AWS (S3, CloudFront, ECS Fargate, API Gateway, CloudWatch, IAM, Glacier), Azure,
+                GCP, Terraform, infrastructure as code, FastAPI, Flask, REST APIs, Postgres &amp;
+                Supabase, row-level security, Git, FinOps, Claude API, agentic workflows, prompt
+                engineering
               </dd>
             </div>
           </dl>
@@ -157,9 +150,9 @@ export default function Home() {
               <span className="text-sm text-neutral-400 shrink-0">Sept 2023 – Dec 2026</span>
             </div>
             <p className="text-sm text-neutral-600">
-              B.S. Information Technology Management. Coursework in data management,
-              data visualization, statistics, system analysis &amp; design, AI for business,
-              and networking.
+              B.S. Information Technology Management. Coursework in data management systems,
+              data visualization, system analysis &amp; design, AI for business, networking and
+              distributed processing, management statistics, and corporate finance.
             </p>
           </div>
         </section>
@@ -182,6 +175,16 @@ export default function Home() {
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <li>
               <a
+                href="https://brandonbalcacer.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-700 hover:text-accent transition-colors"
+              >
+                Website
+              </a>
+            </li>
+            <li>
+              <a
                 href="https://github.com/BrandonBalcacer"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -202,7 +205,7 @@ export default function Home() {
             </li>
             <li>
               <a
-                href="mailto:balcacerrule@gmail.com"
+                href="mailto:Balcacerrule@gmail.com"
                 className="text-neutral-700 hover:text-accent transition-colors"
               >
                 Email
