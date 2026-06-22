@@ -26,42 +26,62 @@ export default function Home() {
                 <span className="font-medium">Cloud &amp; Security Lab Technician Intern</span>
                 <span className="text-sm text-neutral-400 shrink-0">Jun – Aug 2026</span>
               </div>
-              <p className="text-sm text-neutral-500 mb-2">
+              <p className="text-sm text-neutral-500 mb-3">
                 Samsung SDS America &middot; MSP Operations &middot; Ridgefield Park, NJ
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Architecting an AWS solution for an internal demo portal serving Samsung SDS
-                staff, external clients, and vendors: a React/TypeScript front end on S3 and
-                CloudFront, a FastAPI backend on ECS Fargate behind API Gateway, and a managed
-                database for demo metadata. Designing the security model for a multi-audience
-                portal, including TLS encryption in transit, access controls separating internal,
-                client, and vendor users, and per-environment VPC isolation so each demo runs in
-                its own sandboxed environment. Defining governance and data lifecycle strategy
-                with CloudWatch auditing and S3 lifecycle policies that archive retired prototypes
-                to Glacier. Leading the project as sole engineer — specifying all infrastructure as
-                redeployable Terraform, authoring the project charter, requirements specification,
-                and architecture diagrams, and presenting progress to engineering leadership.
-              </p>
+              <ul className="text-sm text-neutral-600 leading-relaxed space-y-2 list-disc pl-5 marker:text-neutral-300">
+                <li>
+                  Architecting an AWS solution for an internal demo portal serving Samsung SDS
+                  staff, external clients, and vendors: a React/TypeScript front end on S3 and
+                  CloudFront, a FastAPI backend on ECS Fargate behind API Gateway, and a managed
+                  database for demo metadata.
+                </li>
+                <li>
+                  Designing the security model for a multi-audience portal, including TLS
+                  encryption in transit, access controls separating internal, client, and vendor
+                  users, and per-environment VPC isolation so each demo runs in its own sandboxed
+                  environment.
+                </li>
+                <li>
+                  Defining governance and data lifecycle strategy with CloudWatch auditing and S3
+                  lifecycle policies that archive retired prototypes to Glacier.
+                </li>
+                <li>
+                  Leading the project as sole engineer — specifying all infrastructure as
+                  redeployable Terraform, authoring the project charter, requirements
+                  specification, and architecture diagrams, and presenting progress to engineering
+                  leadership.
+                </li>
+              </ul>
             </li>
             <li>
               <div className="flex items-baseline justify-between gap-4 mb-1">
                 <span className="font-medium">Data Analytics Intern</span>
                 <span className="text-sm text-neutral-400 shrink-0">Jan – May 2026</span>
               </div>
-              <p className="text-sm text-neutral-500 mb-2">
+              <p className="text-sm text-neutral-500 mb-3">
                 Metropolitan Transportation Authority &middot; Elevators &amp; Escalators &middot; Brooklyn, NY
               </p>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Built a Python regex extraction pipeline that auto-classifies entrapment report
-                fields, validated against a labeled corpus and replacing a manual Excel review.
-                Developed a multi-page Power BI executive report on equipment availability across
-                6 zones using DAX and Power Query M, resolving a DAX fan-out bug that inflated
-                metrics roughly 20x on a 1,967-row dataset via a SUMX over DISTINCTCOUNT pattern.
-                Designed a 12-month demand forecasting dashboard projecting $36M+ cost across
-                380K+ units at a 91.35% fulfillment KPI. Co-built a full-stack document signing
-                application in Power Apps and Power Automate (5 document types, GCC) with a
-                SharePoint backend and automated PDF generation.
-              </p>
+              <ul className="text-sm text-neutral-600 leading-relaxed space-y-2 list-disc pl-5 marker:text-neutral-300">
+                <li>
+                  Built a Python regex extraction pipeline that auto-classifies entrapment report
+                  fields, validated against a labeled corpus and replacing a manual Excel review.
+                </li>
+                <li>
+                  Developed a multi-page Power BI executive report on equipment availability across
+                  6 zones using DAX and Power Query M, resolving a DAX fan-out bug that inflated
+                  metrics roughly 20x on a 1,967-row dataset via a SUMX over DISTINCTCOUNT pattern.
+                </li>
+                <li>
+                  Designed a 12-month demand forecasting dashboard projecting $36M+ cost across
+                  380K+ units at a 91.35% fulfillment KPI.
+                </li>
+                <li>
+                  Co-built a full-stack document signing application in Power Apps and Power
+                  Automate (5 document types, GCC) with a SharePoint backend and automated PDF
+                  generation.
+                </li>
+              </ul>
             </li>
           </ul>
         </section>
