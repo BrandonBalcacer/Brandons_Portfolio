@@ -4,14 +4,15 @@
 
 @layer base {
   :root {
-    --background: #fafaf9;
-    --foreground: #18181b;
-    --muted: #71717a;
-    --subtle: #a1a1aa;
-    --line: #e4e4e7;
-    --card: #ffffff;
-    --accent: #18181b;
-    --accent-foreground: #fafaf9;
+    --background: #0c0d10;
+    --foreground: #e8eaed;
+    --muted: #a1a7b3;
+    --subtle: #6b7280;
+    --line: #20242c;
+    --card: #131620;
+    --accent: #4ade80;
+    --accent-dim: #2f9e5b;
+    --accent-foreground: #07120b;
   }
 
   * {
@@ -26,6 +27,11 @@
 
   a {
     text-underline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
   }
 }
 

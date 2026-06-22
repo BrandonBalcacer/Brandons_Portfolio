@@ -9,7 +9,7 @@ export function ConnectSection() {
       <SectionHeader index="05" title="connect" />
       <Reveal>
         <p className="mb-6 max-w-md font-mono text-sm text-muted">
-          <span className="text-subtle">$</span> reach me anytime —
+          <span className="text-accent">$</span> reach me anytime —
         </p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {socials.map((social) => {
@@ -20,10 +20,10 @@ export function ConnectSection() {
                 href={social.href}
                 target={isMail ? undefined : "_blank"}
                 rel={isMail ? undefined : "noopener noreferrer"}
-                className="group flex items-center justify-between rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-muted transition-colors hover:border-foreground/30 hover:text-foreground"
+                className="group flex items-center justify-between rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-muted transition-colors hover:border-accent/50 hover:text-foreground"
               >
                 <span className="font-mono text-xs">{social.label}</span>
-                <ArrowUpRight className="h-3.5 w-3.5 text-subtle transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                <ArrowUpRight className="h-3.5 w-3.5 text-subtle transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
               </a>
             );
           })}

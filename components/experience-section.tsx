@@ -13,7 +13,7 @@ export function ExperienceSection() {
       <div className="space-y-4">
         {experience.map((job, i) => (
           <Reveal key={job.company} delay={i * 0.06}>
-            <article className="group rounded-xl border border-line bg-card p-5 transition-colors hover:border-foreground/30 sm:p-6">
+            <article className="group rounded-xl border border-line bg-card p-5 transition-colors hover:border-accent/40 sm:p-6">
               <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-medium tracking-tight">{job.role}</h3>
                 <span className="font-mono text-xs text-subtle">
@@ -31,7 +31,7 @@ export function ExperienceSection() {
                     className="flex gap-3 text-sm leading-relaxed text-muted"
                   >
                     <span
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-subtle"
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
                       aria-hidden="true"
                     />
                     <span>{bullet}</span>

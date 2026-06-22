@@ -13,6 +13,7 @@ module.exports = {
         subtle: "var(--subtle)",
         line: "var(--line)",
         accent: "var(--accent)",
+        "accent-dim": "var(--accent-dim)",
         "accent-foreground": "var(--accent-foreground)",
         card: "var(--card)",
       },

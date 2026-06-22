@@ -13,7 +13,7 @@ export function ProjectsSection() {
       <div className="grid gap-4 sm:grid-cols-2">
         {projects.map((project, i) => (
           <Reveal key={project.name} delay={i * 0.06}>
-            <article className="group flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-colors hover:border-foreground/30 sm:p-6">
+            <article className="group flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-colors hover:border-accent/40 sm:p-6">
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-medium tracking-tight">{project.name}</h3>
                 <span className="font-mono text-[11px] text-subtle">
@@ -30,7 +30,7 @@ export function ProjectsSection() {
                     className="flex gap-3 text-sm leading-relaxed text-muted"
                   >
                     <span
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-subtle"
+                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
                       aria-hidden="true"
                     />
                     <span>{bullet}</span>

@@ -35,7 +35,7 @@ export function EducationSection() {
                   className="flex gap-3 text-sm leading-relaxed text-muted"
                 >
                   <Award
-                    className="mt-0.5 h-4 w-4 shrink-0 text-subtle"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-accent"
                     aria-hidden="true"
                   />
                   <span>{honor}</span>

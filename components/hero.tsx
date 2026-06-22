@@ -9,9 +9,9 @@ export function Hero() {
       {/* Terminal window */}
       <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm">
         <div className="flex items-center gap-2 border-b border-line px-4 py-3">
-          <span className="h-3 w-3 rounded-full border border-line bg-background" />
-          <span className="h-3 w-3 rounded-full border border-line bg-background" />
-          <span className="h-3 w-3 rounded-full border border-line bg-background" />
+          <span className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+          <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#27c93f]" />
           <span className="ml-2 font-mono text-xs text-subtle">
             {profile.handle}@{profile.host}: ~
           </span>
@@ -19,7 +19,7 @@ export function Hero() {
 
         <div className="px-5 py-6 sm:px-7 sm:py-8">
           <p className="font-mono text-sm text-muted">
-            <span className="text-subtle">$</span> whoami
+            <span className="text-accent">$</span> whoami
           </p>
 
           <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl text-balance">
@@ -47,8 +47,8 @@ export function Hero() {
       {/* Status line */}
       <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-line bg-card px-3 py-1.5">
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-pulseDot rounded-full bg-foreground opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-foreground" />
+          <span className="absolute inline-flex h-full w-full animate-pulseDot rounded-full bg-accent opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
         </span>
         <span className="font-mono text-xs text-muted">{profile.status}</span>
       </div>
