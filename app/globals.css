@@ -2,11 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background: #ffffff;
-  color: #111111;
+@layer base {
+  :root {
+    --background: #fafaf9;
+    --foreground: #18181b;
+    --muted: #71717a;
+    --subtle: #a1a1aa;
+    --line: #e4e4e7;
+    --card: #ffffff;
+    --accent: #18181b;
+    --accent-foreground: #fafaf9;
+  }
+
+  * {
+    border-color: var(--line);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    text-underline-offset: 3px;
+  }
 }
 
-a {
-  text-underline-offset: 3px;
+@layer utilities {
+  /* Subtle dotted grid backdrop for the terminal/technical feel */
+  .bg-grid {
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .bg-grid-fade {
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
+    mask-image: linear-gradient(to bottom, black, transparent 70%);
+  }
 }
