@@ -96,17 +96,24 @@ export default function Home() {
                 <span className="font-medium">Watcher Workflows — Lead Intelligence Platform</span>
                 <span className="text-sm text-neutral-400 shrink-0">Archive Studios</span>
               </div>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Multi-stage Python pipeline that discovers, enriches, scores, and drafts outreach
-                for local business leads, publishing results to a self-contained, sortable HTML
-                dashboard. Secured the Postgres data layer with Supabase row-level security on
-                every table and a two-key access model that keeps the service role key server-side,
-                rendering all dashboard content with safe DOM methods to prevent injection.
-                Engineered cost-aware LLM orchestration with Claude models tiered by task, cached
-                system prompts, and idempotent Postgres upserts so scheduled daily runs surface
-                only new leads.
-              </p>
-              <p className="text-xs text-neutral-400 mt-1">
+              <ul className="text-sm text-neutral-600 leading-relaxed space-y-2 list-disc pl-5 marker:text-neutral-300 mt-2">
+                <li>
+                  Multi-stage Python pipeline that discovers, enriches, scores, and drafts outreach
+                  for local business leads, publishing results to a self-contained, sortable HTML
+                  dashboard.
+                </li>
+                <li>
+                  Secured the Postgres data layer with Supabase row-level security on every table
+                  and a two-key access model that keeps the service role key server-side, rendering
+                  all dashboard content with safe DOM methods to prevent injection.
+                </li>
+                <li>
+                  Engineered cost-aware LLM orchestration with Claude models tiered by task, cached
+                  system prompts, and idempotent Postgres upserts so scheduled daily runs surface
+                  only new leads.
+                </li>
+              </ul>
+              <p className="text-xs text-neutral-400 mt-2">
                 Python, Claude API, Supabase, Firecrawl
               </p>
             </li>
@@ -115,15 +122,22 @@ export default function Home() {
                 <span className="font-medium">Agent Rufus — Autonomous Daily Market Briefing Agent</span>
                 <span className="text-sm text-neutral-400 shrink-0">2026</span>
               </div>
-              <p className="text-sm text-neutral-600 leading-relaxed">
-                Autonomous AI agent on a scheduled cloud routine that performs multi-source web
-                research on markets, finance, and technology each morning and emails a synthesized
-                HTML briefing to a subscriber list. Engineered research guardrails into the agent:
-                a 48-hour recency gate, a verify-before-asserting standard with source citation, and
-                a fallback chain for live price data — delivered through the Resend API over a domain
-                secured with SPF, DKIM, and DMARC.
-              </p>
-              <p className="text-xs text-neutral-400 mt-1">
+              <ul className="text-sm text-neutral-600 leading-relaxed space-y-2 list-disc pl-5 marker:text-neutral-300 mt-2">
+                <li>
+                  Autonomous AI agent on a scheduled cloud routine that performs multi-source web
+                  research on markets, finance, and technology each morning and emails a synthesized
+                  HTML briefing to a subscriber list.
+                </li>
+                <li>
+                  Engineered research guardrails into the agent: a 48-hour recency gate, a
+                  verify-before-asserting standard with source citation, and a fallback chain for
+                  live price data.
+                </li>
+                <li>
+                  Delivered through the Resend API over a domain secured with SPF, DKIM, and DMARC.
+                </li>
+              </ul>
+              <p className="text-xs text-neutral-400 mt-2">
                 Claude, Cloud Routine, Resend API
               </p>
             </li>
