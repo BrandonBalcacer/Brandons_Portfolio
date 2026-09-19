@@ -36,10 +36,14 @@ export function Hero() {
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               {profile.location}
             </span>
-            <span className="inline-flex items-center gap-1.5">
+            <a
+              href="tel:+16094018703"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+              aria-label={`Call ${profile.name} at ${profile.phone}`}
+            >
               <Phone className="h-3.5 w-3.5" aria-hidden="true" />
               {profile.phone}
-            </span>
+            </a>
           </div>
         </div>
       </div>

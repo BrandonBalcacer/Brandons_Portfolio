@@ -2,12 +2,12 @@ export const profile = {
   name: "Brandon Balcacer",
   handle: "brandon",
   host: "portfolio",
-  role: "Cloud, Data & AI",
+  role: "Digital Data Analyst · Data Engineer",
   location: "Hackensack, NJ",
   phone: "(609) 401-8703",
   email: "Balcacerrule@gmail.com",
-  status: "MSP Lab Technician @ Samsung SDS America",
-  bio: "Information Technology Management student at Ramapo College of New Jersey. Currently an MSP Lab Technician, Cloud & Security Intern at Samsung SDS America, after a data analytics internship with the MTA. I build cloud infrastructure, data pipelines, dashboards, and AI-driven tools.",
+  status: "Digital Data Analyst @ Versant Media, CNBC",
+  bio: "Information Technology Management student at Ramapo College of New Jersey and Digital Data Analyst supporting CNBC at Versant Media. I build analytics systems, data pipelines, decision tools, and AI-assisted products, with experience spanning media, rail operations, and client software.",
 };
 
 export type Experience = {
@@ -21,16 +21,29 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "MSP Lab Technician, Cloud & Security Intern",
+    role: "Digital Data Analyst",
+    company: "Versant Media",
+    team: "CNBC",
+    location: "Remote / Englewood Cliffs",
+    period: "Sep 2026 – Apr 2027",
+    bullets: [
+      "Building and maintaining KPI dashboards and recurring reporting in Adobe Analytics and Domo, including QA support for the migration to Omni.",
+      "Validating tracking implementation and event data accuracy across CNBC.com, CNBC Pro, and Investing Club.",
+      "Supporting experimentation measurement and audience and funnel analysis.",
+      "Ramping into SQL and Databricks for data-layer and pipeline work.",
+    ],
+  },
+  {
+    role: "MSP Lab Technician, Data Engineer",
     company: "Samsung SDS America",
-    team: "MSP Operations",
+    team: "MSP Lab",
     location: "Ridgefield Park, NJ",
     period: "Jun – Aug 2026",
     bullets: [
-      "Architecting an AWS solution for an internal demo portal serving Samsung SDS staff, external clients, and vendors: a React/TypeScript front end on S3 and CloudFront, a FastAPI backend on ECS Fargate behind API Gateway, and a managed database for demo metadata.",
-      "Designing the security model for a multi-audience portal, including TLS encryption in transit, access controls separating internal, client, and vendor users, and per-environment VPC isolation so each demo runs in its own sandboxed environment.",
-      "Defining governance and data lifecycle strategy with CloudWatch auditing and S3 lifecycle policies that archive retired prototypes to Glacier.",
-      "Leading the project as sole engineer — specifying all infrastructure as redeployable Terraform, authoring the project charter, requirements specification, and architecture diagrams, and presenting progress to engineering leadership.",
+      "Built a predictive maintenance system with two interns, unifying sensor data, maintenance history, alerts, and work orders across five rail subsystems to replace per-system tracking.",
+      "Engineered the Docker Compose platform: Python ETL landed 1.15M feature windows through a MinIO and PostgreSQL 16 medallion pipeline from three vetted datasets; four of seven candidate datasets were rejected.",
+      "Built the detection layer with FFT and 2σ/3σ process-control gating XGBoost at 0.999 PR AUC and 0.99 recall with TreeSHAP; caught all nine seeded faults and flagged an air leak 14 hours early.",
+      "Owned the design specification and operator dashboard, including six role-filtered views, alert playbooks, work-order ticketing, and deterministic reports over an LLM layer; presented the system to leadership.",
     ],
   },
   {
@@ -40,10 +53,20 @@ export const experience: Experience[] = [
     location: "Brooklyn, NY",
     period: "Jan – May 2026",
     bullets: [
-      "Built a Python regex extraction pipeline that auto-classifies entrapment report fields, validated against a labeled corpus and replacing a manual Excel review.",
-      "Developed a multi-page Power BI executive report on equipment availability across 6 zones using DAX and Power Query M, resolving a DAX fan-out bug that inflated metrics roughly 20x on a 1,967-row dataset via a SUMX over DISTINCTCOUNT pattern.",
-      "Designed a 12-month demand forecasting dashboard projecting $36M+ cost across 380K+ units at a 91.35% fulfillment KPI.",
-      "Co-built a full-stack document signing application in Power Apps and Power Automate (5 document types, GCC) with a SharePoint backend and automated PDF generation.",
+      "Built a Python regex pipeline that auto-classifies entrapment report fields, validated against a labeled corpus, replacing manual Excel review.",
+      "Developed a Power BI executive report on equipment availability across six zones in DAX and Power Query M; fixed a fan-out bug inflating metrics 20x with a SUMX over DISTINCTCOUNT pattern.",
+      "Designed a 12-month demand forecast projecting $36M+ across 380K+ units at a 91.35% fulfillment KPI; co-built a document-signing app in Power Apps and Power Automate on SharePoint.",
+    ],
+  },
+  {
+    role: "Founding Engineer",
+    company: "Archive Studios",
+    team: "Product & Client Engineering",
+    location: "Hackensack, NJ",
+    period: "2025 – Present",
+    bullets: [
+      "Lead engineering for client sites on Railway and Vercel, implement technical SEO and schema markup, and build custom front-end components inside client Squarespace sites.",
+      "Shipped an internal CRM in Next.js, TypeScript, and Supabase with an eight-stage lead pipeline, client 360 views, token-gated proposals and invoices, and a 14-migration PostgreSQL schema.",
     ],
   },
 ];
@@ -54,30 +77,34 @@ export type Project = {
   context: string;
   bullets: string[];
   stack: string[];
+  links: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
   {
-    name: "Watcher Workflows",
-    tagline: "Lead Intelligence Platform",
-    context: "Archive Studios",
+    name: "Roam",
+    tagline: "Travel Discovery Engine",
+    context: "1st Place · Checkout NYC Hackathon",
     bullets: [
-      "Multi-stage Python pipeline that discovers, enriches, scores, and drafts outreach for local business leads, publishing results to a self-contained, sortable HTML dashboard.",
-      "Secured the Postgres data layer with Supabase row-level security on every table and a two-key access model that keeps the service role key server-side, rendering all dashboard content with safe DOM methods to prevent injection.",
-      "Engineered cost-aware LLM orchestration with Claude models tiered by task, cached system prompts, and idempotent Postgres upserts so scheduled daily runs surface only new leads.",
+      "Won New York City's first travel and hospitality hackathon by building the backend in one day: 36 PostgreSQL functions called from the browser through PostgREST, with no application server and row-level security across 16 tables.",
+      "Used one SQL expression for each card's score and user-facing reason so the two cannot drift; a PostGIS planner groups each day by neighborhood and exposes eight itinerary actions to a Claude agent.",
     ],
-    stack: ["Python", "Claude API", "Supabase", "Firecrawl"],
+    stack: ["PostgreSQL", "Supabase", "PostGIS", "Claude API"],
+    links: [
+      { label: "Live", href: "https://roam-psi-one.vercel.app" },
+      { label: "GitHub", href: "https://github.com/BrandonBalcacer/roam" },
+    ],
   },
   {
-    name: "Agent Rufus",
-    tagline: "Autonomous Daily Market Briefing Agent",
-    context: "2026",
+    name: "Bakelytics",
+    tagline: "Multi-tenant Bakery Analytics SaaS",
+    context: "Production SaaS",
     bullets: [
-      "Autonomous AI agent on a scheduled cloud routine that performs multi-source web research on markets, finance, and technology each morning and emails a synthesized HTML briefing to a subscriber list.",
-      "Engineered research guardrails into the agent: a 48-hour recency gate, a verify-before-asserting standard with source citation, and a fallback chain for live price data.",
-      "Delivered through the Resend API over a domain secured with SPF, DKIM, and DMARC.",
+      "Productized a single-tenant bakery dashboard into multi-tenant SaaS: one deployment serves every bakery, isolated by tenant ID, with self-serve onboarding through single-use invite links.",
+      "Built the Flask and PostgreSQL backend across 13 migrations, including Shopify order sync, recipe scaling on live prices, cost and margin reporting, bcrypt authentication, and encrypted tenant secrets.",
     ],
-    stack: ["Claude", "Cloud Routine", "Resend API"],
+    stack: ["Flask", "PostgreSQL", "Shopify API", "Railway"],
+    links: [{ label: "Live", href: "https://bakelytics.com" }],
   },
 ];
 
@@ -88,50 +115,49 @@ export type SkillGroup = {
 
 export const skills: SkillGroup[] = [
   {
-    label: "Languages & Data",
+    label: "Languages",
     items: [
       "Python",
       "SQL",
+      "JavaScript",
+      "TypeScript",
       "DAX",
       "PowerFx",
       "Power Query M",
-      "JavaScript",
-      "TypeScript",
       "HTML/CSS",
     ],
   },
   {
-    label: "Analytics & BI",
+    label: "Data & ML",
     items: [
+      "pandas",
+      "NumPy",
+      "XGBoost",
+      "TreeSHAP",
+      "Anomaly Detection",
+      "Signal Processing (FFT)",
+      "Statistical Process Control",
       "Power BI",
-      "Tableau",
-      "Power Apps",
-      "Power Automate",
-      "SharePoint",
+      "Excel",
       "ETL Pipeline Design",
-      "Data Cleaning",
-      "Statistical Analysis",
-      "Forecasting",
     ],
   },
   {
-    label: "Cloud, Backend & AI",
+    label: "Cloud & Backend",
     items: [
-      "AWS (S3, CloudFront, ECS Fargate, API Gateway, CloudWatch, IAM, Glacier)",
-      "Azure",
-      "GCP",
-      "Terraform",
-      "Infrastructure as Code",
-      "FastAPI",
+      "Docker",
+      "MinIO",
+      "PostgreSQL / Supabase",
+      "PostGIS",
       "Flask",
+      "FastAPI",
+      "Streamlit",
+      "AWS (S3, ECS Fargate)",
+      "Railway",
       "REST APIs",
-      "Postgres & Supabase",
-      "Row-Level Security",
       "Git",
-      "FinOps",
       "Claude API",
       "Agentic Workflows",
-      "Prompt Engineering",
     ],
   },
 ];
@@ -141,7 +167,7 @@ export const education = {
   period: "Sept 2023 – Dec 2026",
   degree: "B.S. Information Technology Management",
   coursework:
-    "Coursework in data management systems, data visualization, system analysis & design, AI for business, networking and distributed processing, management statistics, and corporate finance.",
+    "Relevant coursework in data management systems, system analysis and design, AI for business, and corporate finance.",
 };
 
 export const honors = [
@@ -153,6 +179,6 @@ export const honors = [
 export const socials = [
   { label: "Website", href: "https://brandonbalcacer.dev" },
   { label: "GitHub", href: "https://github.com/BrandonBalcacer" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/brandonbalcacer/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/balcacer/" },
   { label: "Email", href: "mailto:Balcacerrule@gmail.com" },
 ];
