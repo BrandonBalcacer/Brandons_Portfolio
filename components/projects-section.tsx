@@ -1,6 +1,7 @@
 import { projects } from "@/lib/data";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
+import { ArrowUpRight } from "lucide-react";
 
 export function ProjectsSection() {
   return (
@@ -45,6 +46,24 @@ export function ProjectsSection() {
                   >
                     {tech}
                   </span>
+                ))}
+              </div>
+              <div className="mt-5 flex flex-wrap gap-4 border-t border-line pt-4">
+                {project.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${link.label} link for ${project.name}`}
+                    className="group/link inline-flex items-center gap-1.5 font-mono text-xs text-accent transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                    <ArrowUpRight
+                      className="h-3.5 w-3.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
                 ))}
               </div>
             </article>

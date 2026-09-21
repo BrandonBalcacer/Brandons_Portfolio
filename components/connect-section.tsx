@@ -9,7 +9,7 @@ export function ConnectSection() {
       <SectionHeader index="05" title="connect" />
       <Reveal>
         <p className="mb-6 max-w-md font-mono text-sm text-muted">
-          <span className="text-accent">$</span> reach me anytime —
+          <span className="text-accent">$</span> reach me anytime:
         </p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {socials.map((social) => {

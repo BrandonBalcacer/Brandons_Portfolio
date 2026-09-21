@@ -15,23 +15,25 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brandonbalcacer.dev"),
-  title: "Brandon Balcacer — Cloud, Data & AI",
+  title: "Brandon Balcacer | Digital Data Analyst",
   description:
-    "Brandon Balcacer — Information Technology Management student building cloud infrastructure, data pipelines, dashboards, and AI-driven tools. MSP Lab Technician at Samsung SDS America.",
+    "Brandon Balcacer is a Digital Data Analyst supporting CNBC at Versant Media, building analytics systems, data pipelines, decision tools, and AI-assisted products.",
   keywords: [
     "Brandon Balcacer",
-    "Cloud Engineer",
+    "Digital Data Analyst",
+    "Data Engineer",
     "Data Analytics",
-    "AWS",
+    "CNBC",
+    "Versant Media",
+    "PostgreSQL",
     "AI",
-    "Samsung SDS",
     "Portfolio",
   ],
   authors: [{ name: "Brandon Balcacer" }],
   openGraph: {
-    title: "Brandon Balcacer — Cloud, Data & AI",
+    title: "Brandon Balcacer | Digital Data Analyst",
     description:
-      "Building cloud infrastructure, data pipelines, dashboards, and AI-driven tools.",
+      "Analytics systems, data pipelines, decision tools, and AI-assisted products.",
     url: "https://brandonbalcacer.dev",
     siteName: "Brandon Balcacer",
     type: "website",

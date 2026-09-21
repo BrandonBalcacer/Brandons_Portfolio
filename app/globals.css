@@ -7,7 +7,7 @@
     --background: #0c0d10;
     --foreground: #e8eaed;
     --muted: #a1a7b3;
-    --subtle: #6b7280;
+    --subtle: #7a8291;
     --line: #20242c;
     --card: #131620;
     --accent: #4ade80;
@@ -29,6 +29,11 @@
     text-underline-offset: 3px;
   }
 
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
   ::selection {
     background-color: var(--accent);
     color: var(--accent-foreground);
@@ -45,5 +50,16 @@
   .bg-grid-fade {
     -webkit-mask-image: linear-gradient(to bottom, black, transparent 70%);
     mask-image: linear-gradient(to bottom, black, transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
