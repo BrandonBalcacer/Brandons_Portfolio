@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     "Data Analytics",
     "CNBC",
     "Versant Media",
+    "Simargi Systems",
     "PostgreSQL",
     "AI",
     "Portfolio",

@@ -6,8 +6,8 @@ export const profile = {
   location: "Hackensack, NJ",
   phone: "(609) 401-8703",
   email: "Balcacerrule@gmail.com",
-  status: "Digital Data Analyst @ Versant Media, CNBC",
-  bio: "Information Technology Management student at Ramapo College of New Jersey and Digital Data Analyst supporting CNBC at Versant Media. I build analytics systems, data pipelines, decision tools, and AI-assisted products, with experience spanning media, rail operations, and client software.",
+  status: "Digital Data Analyst Intern @ Versant Media, CNBC",
+  bio: "Information Technology Management student at Ramapo College of New Jersey, Digital Data Analyst Intern supporting CNBC at Versant Media, and founder of Simargi Systems. I build analytics systems, data pipelines, and AI products that keep a human in control, with experience spanning media, rail operations, real estate, and client software.",
 };
 
 export type Experience = {
@@ -21,16 +21,43 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "Digital Data Analyst",
+    role: "Digital Data Analyst Intern",
     company: "Versant Media",
     team: "CNBC",
     location: "Remote / Englewood Cliffs",
     period: "Sep 2026 – Apr 2027",
     bullets: [
-      "Building and maintaining KPI dashboards and recurring reporting in Adobe Analytics and Domo, including QA support for the migration to Omni.",
-      "Validating tracking implementation and event data accuracy across CNBC.com, CNBC Pro, and Investing Club.",
-      "Supporting experimentation measurement and audience and funnel analysis.",
-      "Ramping into SQL and Databricks for data-layer and pipeline work.",
+      "Automated a manual weekly Airship report with Power Automate, Outlook, and SharePoint (CSV extraction from ZIP files); validated the first unattended run end to end: 272 notification IDs, with no lost or duplicate rows.",
+      "Built a Python/PySpark page-view monitoring prototype in Databricks that reconciles silver and gold layers across desktop and mobile; backtested mean and median baselines over 56 platform-days to set alert thresholds.",
+      "Analyzed 75 earnings push notifications in Airship, comparing direct, indirect, and total response rates by company, audience, and send time; built filtered Excel reporting with recommendations for stakeholders.",
+      "Prepared six months of Adobe Analytics audience metrics and top-100 page rankings for comScore validation.",
+      "Flagged reused Airship campaign titles that mislabeled push content, preventing misclassified reporting.",
+    ],
+  },
+  {
+    role: "Founder",
+    company: "Simargi Systems LLC",
+    team: "Industry-specific workflow software",
+    location: "New Jersey",
+    period: "Jul 2026 – Present",
+    bullets: [
+      "Founded Simargi Systems to build workflow software for small businesses in specific industries, with a human approval step in every agent-assisted workflow; built the company site at simargisystems.com in Next.js, TypeScript, and Zod.",
+      "Built Stratos, a multi-tenant property research platform for North Jersey realtors that ranks every structure on a street using parcel data, a two-model vision ensemble, and public records.",
+      "Built a human-approved CRM agent for a licensed North Jersey real estate agent on the Lofty platform, with encrypted OAuth, phone-based approvals, and kill switches; it is running as a controlled pilot.",
+      "Brought Bakelytics, a multi-tenant bakery analytics SaaS, under Simargi as its bakery operations product, now in pilot.",
+    ],
+  },
+  {
+    role: "Founding Engineer",
+    company: "Archive Studios",
+    team: "Product & Client Engineering",
+    location: "Hackensack, NJ",
+    period: "2025 – Present",
+    bullets: [
+      "Lead engineering for client sites on Railway and Vercel, implement technical SEO and schema markup, and build custom front-end components inside client Squarespace sites.",
+      "Shipped the studio's internal CRM in Next.js, TypeScript, and Supabase: an eight-stage lead pipeline, client 360 views, token-gated proposals and invoices, Stripe payment webhooks, and two-way Google Calendar sync over a 22-migration PostgreSQL schema.",
+      "Built the public site's serverless backend on Vercel: enquiry forms that create CRM leads through a fail-closed, secret-authenticated webhook, call booking onto the studio calendar, Stripe subscriptions with plan changes, and project billing that takes a deposit and charges the balance automatically.",
+      "Built an agentic outbound engine that finds and scores local businesses, drafts outreach with Claude, and runs daily on GitHub Actions into a Firestore-backed team dashboard.",
     ],
   },
   {
@@ -55,18 +82,7 @@ export const experience: Experience[] = [
     bullets: [
       "Built a Python regex pipeline that auto-classifies entrapment report fields, validated against a labeled corpus, replacing manual Excel review.",
       "Developed a Power BI executive report on equipment availability across six zones in DAX and Power Query M; fixed a fan-out bug inflating metrics 20x with a SUMX over DISTINCTCOUNT pattern.",
-      "Designed a 12-month demand forecast projecting $36M+ across 380K+ units at a 91.35% fulfillment KPI; co-built a document-signing app in Power Apps and Power Automate on SharePoint.",
-    ],
-  },
-  {
-    role: "Founding Engineer",
-    company: "Archive Studios",
-    team: "Product & Client Engineering",
-    location: "Hackensack, NJ",
-    period: "2025 – Present",
-    bullets: [
-      "Lead engineering for client sites on Railway and Vercel, implement technical SEO and schema markup, and build custom front-end components inside client Squarespace sites.",
-      "Shipped an internal CRM in Next.js, TypeScript, and Supabase with an eight-stage lead pipeline, client 360 views, token-gated proposals and invoices, and a 14-migration PostgreSQL schema.",
+      "Designed a 12-month demand forecast projecting $36M+ across 380K+ units at a 91.35% fulfillment KPI.",
     ],
   },
 ];
@@ -81,6 +97,30 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: "Stratos",
+    tagline: "Property Research Platform for Realtors",
+    context: "Simargi Systems · In development",
+    bullets: [
+      "Turns a street and municipality into a ranked research queue: enumerates every structure from New Jersey's statewide parcel data, scores roof, siding, windows, and yard from Street View and aerial imagery with an OpenAI and Claude vision ensemble, and blends in public-record signals.",
+      "Enforces the rules in code rather than prompts: model disagreement goes to human review, visibly distressed homes are never auto-discarded, scoring uses only physical and public-record facts to stay within fair-housing rules, and no raw imagery is ever stored.",
+      "Runs as a FastAPI service and installable PWA on Railway (Docker, PostgreSQL, Alembic), with per-tenant configuration instead of hardcoded values, spending guards on metered APIs, and 1,000+ automated backend checks.",
+    ],
+    stack: ["Python", "FastAPI", "PostgreSQL", "Docker", "Railway", "Claude API", "OpenAI API"],
+    links: [],
+  },
+  {
+    name: "Lofty CRM Agent",
+    tagline: "Human-Approved Real Estate Agent Assistant",
+    context: "Simargi Systems · Pilot",
+    bullets: [
+      "Drafts lead responses for a licensed real estate agent from business knowledge the client has confirmed, and sends each proposed action to the agent's phone for approval, so only the exact approved action can reach the Lofty CRM.",
+      "Built the security model: OAuth with AES-256-GCM encrypted token storage and rotation, HMAC-bound approval codes with expiry and replay rejection, CSRF-protected signed sessions, STOP/DNC suppression, global and per-tenant kill switches, and an append-only audit log.",
+      "TypeScript, Fastify, and PostgreSQL 16 with database-level enforcement triggers and leased, idempotent jobs with dead-lettering; 365 passing tests, and no deployed route can send a message or change a CRM record.",
+    ],
+    stack: ["TypeScript", "Fastify", "PostgreSQL", "OAuth 2.0", "OpenAI API", "Vercel"],
+    links: [],
+  },
   {
     name: "Roam",
     tagline: "Travel Discovery Engine",
@@ -98,7 +138,7 @@ export const projects: Project[] = [
   {
     name: "Bakelytics",
     tagline: "Multi-tenant Bakery Analytics SaaS",
-    context: "Production SaaS",
+    context: "Simargi Systems · Pilot",
     bullets: [
       "Productized a single-tenant bakery dashboard into multi-tenant SaaS: one deployment serves every bakery, isolated by tenant ID, with self-serve onboarding through single-use invite links.",
       "Built the Flask and PostgreSQL backend across 13 migrations, including Shopify order sync, recipe scaling on live prices, cost and margin reporting, bcrypt authentication, and encrypted tenant secrets.",
@@ -122,22 +162,26 @@ export const skills: SkillGroup[] = [
       "JavaScript",
       "TypeScript",
       "DAX",
-      "PowerFx",
       "Power Query M",
       "HTML/CSS",
     ],
   },
   {
-    label: "Data & ML",
+    label: "Data & Analytics",
     items: [
+      "PySpark",
       "pandas",
       "NumPy",
+      "Databricks",
+      "Adobe Analytics",
+      "Airship",
       "XGBoost",
       "TreeSHAP",
       "Anomaly Detection",
       "Signal Processing (FFT)",
       "Statistical Process Control",
       "Power BI",
+      "Power Automate",
       "Excel",
       "ETL Pipeline Design",
     ],
@@ -158,6 +202,23 @@ export const skills: SkillGroup[] = [
       "Git",
       "Claude API",
       "Agentic Workflows",
+      "Fastify",
+      "Firebase / Firestore",
+      "Vercel",
+      "GitHub Actions",
+    ],
+  },
+  {
+    label: "Security",
+    items: [
+      "OAuth 2.0",
+      "AES-256-GCM Encryption",
+      "HMAC Signing",
+      "CSRF Protection",
+      "Row-Level Security",
+      "Firestore Security Rules",
+      "Audit Logging",
+      "Secrets Management",
     ],
   },
 ];

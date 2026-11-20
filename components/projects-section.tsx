@@ -15,7 +15,7 @@ export function ProjectsSection() {
         {projects.map((project, i) => (
           <Reveal key={project.name} delay={i * 0.06}>
             <article className="group flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-colors hover:border-accent/40 sm:p-6">
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                 <h3 className="font-medium tracking-tight">{project.name}</h3>
                 <span className="font-mono text-[11px] text-subtle">
                   {project.context}
@@ -48,6 +48,7 @@ export function ProjectsSection() {
                   </span>
                 ))}
               </div>
+              {project.links.length > 0 && (
               <div className="mt-5 flex flex-wrap gap-4 border-t border-line pt-4">
                 {project.links.map((link) => (
                   <a
@@ -66,6 +67,7 @@ export function ProjectsSection() {
                   </a>
                 ))}
               </div>
+              )}
             </article>
           </Reveal>
         ))}
