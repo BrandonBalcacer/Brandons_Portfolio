@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Github, LockKeyhole } from "lucide-react";
 import { detailedProjects } from "@/lib/project-details";
-import { Reveal } from "@/components/reveal";
+import { LiquidProjectGrid } from "@/components/liquid/liquid-project-grid";
 import { SectionHeader } from "@/components/section-header";
 import { ProjectVisual } from "@/components/project-visual";
 
@@ -10,9 +10,9 @@ export function ProjectsSection() {
     <section id="projects" className="mt-20 scroll-mt-8">
       <SectionHeader index="01" title="projects" count={`${detailedProjects.length} builds`} />
       <p className="mb-8 max-w-xl text-muted">A few things I&apos;ve built. Open a project for the use case, the decisions, and what&apos;s under the hood.</p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {detailedProjects.map((project, index) => (
-          <Reveal key={project.slug} delay={index * 0.05}>
+      <LiquidProjectGrid items={detailedProjects.map((project, index) => ({
+        id: project.slug,
+        node: (
             <article className="project-card group" data-project={project.slug} data-field-blocker>
               <div className="flex items-start justify-between gap-4">
                 <span className="font-mono text-xs text-subtle">0{index + 1} / {project.tagline}</span>
@@ -33,9 +33,8 @@ export function ProjectsSection() {
                 <a href={project.repository.href} target="_blank" rel="noopener noreferrer" className="project-action" aria-label={`${project.name} GitHub repository${project.repository.private ? ', private, access required' : ''}`}><Github size={14} aria-hidden="true" />Source{project.repository.private ? <><LockKeyhole size={11} aria-hidden="true" /><span className="text-subtle">Private</span></> : <ArrowUpRight size={12} aria-hidden="true" />}</a>
               </div>
             </article>
-          </Reveal>
-        ))}
-      </div>
+        ),
+      }))} />
     </section>
   );
 }
