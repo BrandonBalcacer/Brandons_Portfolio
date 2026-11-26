@@ -116,24 +116,25 @@ main:has(.liquid-grid) { overflow-x: clip; }
 .section-heading[data-section-index="03"] { --section-accent: var(--coral); }
 .section-heading[data-section-index="04"] { --section-accent: var(--amber); }
 .section-heading > span:first-child, .section-heading .text-accent { color: var(--section-accent, var(--accent)); }
-/* LED strip under each section header (components/led-strip.tsx), after the
-   triangle-LED hero: segments glow in the section color at rest and switch to
-   red, green and blue on hover, spilling grainy light onto the page. */
-.section-heading {
-  --led-color: color-mix(in oklch, var(--section-accent, var(--accent)) 72%, white);
+.section-rule { background: linear-gradient(90deg, color-mix(in oklch, var(--section-accent, var(--accent)) 50%, var(--line)), var(--line) 85%); }
+/* LED strip under the top nav (components/led-strip.tsx), after the
+   triangle-LED hero: segments glow mint at rest and switch to red, green and
+   blue on hover, spilling grainy light onto the page. */
+.led-host {
+  --led-color: color-mix(in oklch, var(--accent) 72%, white);
   --led-red: rgb(242 46 64);
   --led-green: rgb(0 171 61);
   --led-blue: rgb(0 145 255);
-  --led-fade: linear-gradient(90deg, transparent, #000 3%, #000 62%, transparent 96%);
+  --led-fade: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
   --led-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 -.15'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   position: relative;
   padding-bottom: 16px;
 }
-.section-heading > :not(.led) { position: relative; z-index: 1; }
+.led-host > :not(.led) { position: relative; z-index: 1; }
 .led { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; pointer-events: none; }
 /* Every layer is the LED color; masks give it its shape, falloff and grain. */
 .led > * { position: absolute; left: 0; right: 0; background: var(--led-color); mask-composite: intersect; }
-.led > .led-rgb { background: linear-gradient(90deg, var(--led-red) 4%, var(--led-green) 32%, var(--led-blue) 62%); }
+.led > .led-rgb { background: linear-gradient(90deg, var(--led-red) 8%, var(--led-green) 50%, var(--led-blue) 92%); }
 .led-bar {
   top: 0;
   bottom: 0;
@@ -152,7 +153,7 @@ main:has(.liquid-grid) { overflow-x: clip; }
   top: -56px;
   height: 115px;
   mix-blend-mode: screen;
-  mask-image: radial-gradient(ellipse 70% 50% at 30% 50%, rgb(0 0 0 / 0.42), transparent), var(--led-grain), var(--led-fade);
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, rgb(0 0 0 / 0.42), transparent), var(--led-grain), var(--led-fade);
 }
 .led-hot {
   top: -40px;
@@ -165,8 +166,8 @@ main:has(.liquid-grid) { overflow-x: clip; }
 }
 .led > :not(.led-rgb, .led-hot) { transition: opacity 380ms ease-out; }
 .led-rgb { opacity: 0; transition: opacity 380ms ease-out; }
-.section-heading:hover .led-rgb, .section-heading:hover .led-hot { opacity: 1; }
-.section-heading:hover .led > :not(.led-rgb, .led-hot) { opacity: 0; }
+.led-host:hover .led-rgb, .led-host:hover .led-hot { opacity: 1; }
+.led-host:hover .led > :not(.led-rgb, .led-hot) { opacity: 0; }
 /* The strip powers on left to right as it scrolls in, where scroll timelines exist. */
 @supports (animation-timeline: view()) {
   .led { animation: led-on linear both; animation-timeline: view(); animation-range: entry 10% cover 30%; }

@@ -1,17 +1,19 @@
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
+import { LedStrip } from "@/components/led-strip";
 import { profile } from "@/lib/data";
 
 export function Hero() {
   return (
     <header>
-      <nav className="mb-10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs" aria-label="Main navigation">
+      <nav className="led-host mb-10 flex flex-wrap items-center justify-between gap-4 font-mono text-xs" aria-label="Main navigation">
         <a href="#top" className="nav-link inline-flex min-h-11 items-center text-foreground">brandon<span className="text-accent">.</span></a>
         <div className="flex items-center gap-6 text-muted">
           <a href="#projects" className="nav-link">Projects</a>
           <a href="#experience" className="nav-link">Experience</a>
           <a href="#connect" className="nav-link">Connect <ArrowUpRight size={13} aria-hidden="true" /></a>
         </div>
+        <LedStrip />
       </nav>
       <div className="hero-grid">
         <div className="hero-identity overflow-hidden rounded-xl border" data-field-blocker>
