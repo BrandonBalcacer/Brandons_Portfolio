@@ -1,5 +1,3 @@
-import { LedStrip } from "@/components/led-strip";
-
 export function SectionHeader({
   index,
   title,
@@ -16,11 +14,10 @@ export function SectionHeader({
         <span className="text-accent">/</span>
         {title}
       </h2>
-      <span className="flex-1" aria-hidden="true" />
+      <span className="section-rule h-px flex-1" aria-hidden="true" />
       {count ? (
         <span className="font-mono text-xs text-subtle">{count}</span>
       ) : null}
-      <LedStrip />
     </div>
   );
 }
