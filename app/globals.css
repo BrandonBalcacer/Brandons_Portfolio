@@ -63,6 +63,31 @@
 .project-card { display: flex; position: relative; flex-direction: column; gap: 0; height: 100%; padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); transition: border-color 240ms ease-out, transform 240ms ease-out; }
 .project-card:hover, .project-card:focus-visible { border-color: var(--accent-dim); }
 .project-card:active { transform: scale(.992); }
+/* A dragged card may leave the column; clip it instead of scrolling sideways. */
+main:has(.liquid-grid) { overflow-x: clip; }
+.liquid-grid { position: relative; isolation: isolate; }
+/* Loading screen. The failsafe hides it if JavaScript never runs. */
+.intro { position: fixed; inset: 0; z-index: 100; background: #0c0d10; transition: opacity 500ms ease-out; animation: intro-failsafe 0s linear 10s forwards; --intro-name-bottom: 58%; }
+.intro[data-phase="leaving"] { opacity: 0; pointer-events: none; }
+.intro-canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.intro-greeting { position: absolute; left: 0; right: 0; top: calc(var(--intro-name-bottom) + 12px); padding: 0 24px; text-align: center; font-family: var(--font-mono), monospace; font-size: clamp(0.95rem, 0.8rem + 0.8vw, 1.35rem); letter-spacing: 0.08em; color: #e8eaed; animation: intro-rise 900ms ease-out 1.6s both; }
+.intro-name { position: absolute; left: 0; right: 0; bottom: calc(100% - var(--intro-name-bottom)); text-align: center; font-size: clamp(2rem, 1rem + 5vw, 4.5rem); font-weight: 700; color: var(--accent); }
+.intro[data-fallback] .intro-greeting { animation-delay: 0s; }
+.intro-skip { position: absolute; right: 16px; bottom: 16px; min-height: 44px; padding: 0 16px; font-family: var(--font-mono), monospace; font-size: 12px; color: #a1a7b3; }
+.intro-skip:hover { color: #e8eaed; }
+@keyframes intro-failsafe { to { visibility: hidden; } }
+@keyframes intro-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none; } }
+.liquid-canvas { position: absolute; top: -32px; left: -32px; width: calc(100% + 64px); height: calc(100% + 64px); max-width: none; pointer-events: none; z-index: 0; }
+.liquid-slot { position: relative; }
+.liquid-slot > * { transition: opacity 200ms ease-out; }
+/* While one card is dragged, the others' text steps back so the two never read as one. */
+.liquid-grid:has(.liquid-slot[data-raised]) .liquid-slot:not([data-raised]) > * { opacity: 0.15; }
+.liquid-grid[data-liquid="on"] .liquid-slot { cursor: grab; user-select: none; }
+.liquid-grid[data-liquid="on"] .liquid-slot:active { cursor: grabbing; }
+.liquid-grid[data-liquid="on"] a, .liquid-grid[data-liquid="on"] img { -webkit-user-drag: none; }
+.liquid-grid[data-liquid="on"] .project-card { background: transparent; border-color: transparent; border-radius: 32px; }
+.liquid-grid[data-liquid="on"] .project-card:focus-within { border-color: var(--project-accent, var(--accent)); }
 .project-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: auto; border-top: 1px solid var(--line); padding-top: 12px; font-family: var(--font-mono), monospace; font-size: 12px; }
 .project-action { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--project-accent, var(--accent)); }
 .project-action:hover { color: var(--foreground); }
@@ -188,3 +213,40 @@ body:has(.screenshot-dialog[open]) { overflow: hidden; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Glass cards, site-wide: a CSS match for the WebGPU glass on the project cards
+   (round corners, a lit rim, soft accent light). Kept at the end so it wins over
+   the earlier flat card styles. */
+.project-card, .section-card, .case-header, .workflow, .hero-identity {
+  --glass-tint: var(--accent);
+  border: 1px solid rgb(214 228 240 / .20);
+  border-radius: 32px;
+  background:
+    radial-gradient(120% 80% at 15% 0%, color-mix(in oklch, var(--glass-tint) 17%, transparent), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, color-mix(in oklch, var(--glass-tint) 10%, transparent), transparent 65%),
+    rgb(17 21 29 / .78);
+  box-shadow:
+    inset 1px 1px 0 rgb(255 255 255 / .22),
+    inset -1px -1px 0 rgb(255 255 255 / .07),
+    inset 10px 10px 22px -14px rgb(255 255 255 / .30),
+    inset -8px -8px 22px -16px rgb(255 255 255 / .16),
+    0 14px 30px -18px rgb(0 0 0 / .8);
+}
+.project-card { --glass-tint: var(--project-accent, var(--accent)); }
+.section-card { --glass-tint: var(--section-accent, var(--accent)); }
+.case-page .case-header, .case-page .workflow { --glass-tint: var(--project-accent, var(--accent)); background:
+    radial-gradient(120% 80% at 15% 0%, color-mix(in oklch, var(--glass-tint) 17%, transparent), transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, color-mix(in oklch, var(--glass-tint) 10%, transparent), transparent 65%),
+    rgb(17 21 29 / .78); }
+.connect-card { border-radius: 22px; padding-inline: 16px; }
+.project-main-link::after { border-radius: 32px; }
+.hero-photo { border-radius: 32px; border-color: rgb(214 228 240 / .20); }
+.hero-photo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 1px 1px 0 rgb(255 255 255 / .35), inset 10px 10px 22px -14px rgb(255 255 255 / .35); }
+/* Blur only where there is power to spare: phones skip it. */
+@media (min-width: 768px) and (pointer: fine) {
+  .project-card, .section-card, .case-header, .workflow { -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); }
+}
+/* The WebGPU canvas draws the glass itself, so the DOM card steps out of the way. */
+.liquid-grid[data-liquid="on"] .project-card { background: transparent; border-color: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.liquid-grid[data-liquid="on"] .project-card:focus-within { border-color: var(--project-accent, var(--accent)); }
+.project-card:hover, .project-card:focus-within, .connect-card:hover, .connect-card:focus-visible { border-color: var(--glass-tint); }
