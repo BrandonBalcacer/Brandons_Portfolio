@@ -16,6 +16,8 @@ export interface LiquidItem {
 }
 
 const CAPABLE_QUERY = "(min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)";
+/** Pointer travel before a press becomes a drag, so a shaky click still clicks. */
+const DRAG_THRESHOLD = 8;
 const SPRING = { type: "spring", stiffness: 170, damping: 21 } as const;
 
 function subscribeCapability(listener: () => void) {
@@ -66,7 +68,8 @@ function LiquidCard({ item, hue, active, registry, grid, onHover }: CardProps) {
 
   // The click that ends a drag must not follow the card's link.
   const onClickCapture = (event: MouseEvent) => {
-    if (!dragged.current) return;
+    // detail 0 is a keyboard activation, which never ends a drag.
+    if (!dragged.current || event.detail === 0) return;
     dragged.current = false;
     event.preventDefault();
     event.stopPropagation();
@@ -92,7 +95,7 @@ function LiquidCard({ item, hue, active, registry, grid, onHover }: CardProps) {
       onHoverEnd={() => hover.set(0)}
       onPointerDown={(event) => {
         dragged.current = false;
-        if (active && event.button === 0) controls.start(event);
+        if (active && event.button === 0) controls.start(event, { distanceThreshold: DRAG_THRESHOLD });
       }}
       onDragStart={() => {
         dragged.current = true;

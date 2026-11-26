@@ -13,11 +13,22 @@ const FALLBACK_MS = 1800;
 /** Upper bound, so a stalled GPU can never trap a visitor. */
 const MAX_MS = 8000;
 const LEAVE_MS = 500;
+/** Past this long after navigation, the visitor is already looking at the page. */
+const LATE_MS = 4000;
 
 // Survives client-side navigation, so returning from a case study does not replay it.
 let hasPlayed = false;
 
 type Phase = "playing" | "leaving" | "done";
+
+/** Deep links, reduced motion and slow loads go straight to the page. */
+function shouldSkip(): boolean {
+  return (
+    window.location.hash !== "" ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    performance.now() > LATE_MS
+  );
+}
 
 export function IntroScreen() {
   const [phase, setPhase] = useState<Phase>(() => (hasPlayed ? "done" : "playing"));
@@ -30,15 +41,14 @@ export function IntroScreen() {
 
   useEffect(() => {
     if (!visible) return;
-    // Deep links and reduced motion go straight to the page.
-    const skip = window.location.hash !== "" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     hasPlayed = true;
-    if (skip) {
+    if (shouldSkip()) {
       const now = window.setTimeout(() => setPhase("done"), 0);
       return () => window.clearTimeout(now);
     }
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") leave();
+      // Tab dismisses too, so keyboard focus never moves behind the overlay.
+      if (event.key === "Escape" || event.key === "Tab") leave();
     };
     const previousOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
@@ -53,8 +63,7 @@ export function IntroScreen() {
 
   useEffect(() => {
     const target = canvas.current;
-    if (!visible || !target || window.location.hash !== "") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!visible || !target || shouldSkip()) return;
     let cancelled = false;
     let renderer: { dispose: () => void } | undefined;
     const fail = (error: unknown) => {

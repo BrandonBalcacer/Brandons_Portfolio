@@ -199,7 +199,8 @@ export function createRenderer(options: RendererOptions) {
   }
 
   const initialize = async () => {
-    const nextGpu = await init({ requiredLimits: { maxStorageBuffersInVertexStage: 1 } });
+    // Browsers that predate this limit name reject the request, so retry without it.
+    const nextGpu = await init({ requiredLimits: { maxStorageBuffersInVertexStage: 1 } }).catch(() => init());
     if (disposed) {
       nextGpu.dispose();
       return;
