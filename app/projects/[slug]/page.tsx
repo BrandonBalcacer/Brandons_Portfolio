@@ -30,7 +30,7 @@ export default async function ProjectPage({ params }: Props) {
         <p className="font-mono text-xs text-accent">{project.context}</p>
         <h1 className="mt-5 text-4xl font-semibold tracking-tight sm:text-6xl">{project.name}<span className="text-accent">.</span></h1>
         <p className="mt-5 max-w-2xl text-xl leading-relaxed text-muted sm:text-2xl">{project.summary}</p>
-        <dl className="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-2"><div><dt className="case-label">Built for</dt><dd className="mt-2 text-sm">{project.audience}</dd></div><div><dt className="case-label">My contribution</dt><dd className="mt-2 text-sm">{project.role}</dd></div></dl>
+        <dl className="mt-10 grid gap-6 border-t border-line pt-6 sm:grid-cols-2"><div><dt className="case-label">Built for</dt><dd className="mt-2 text-sm">{project.audience}</dd></div><div><dt className="case-label">{project.ownership === "solo" ? "Built by me" : "My role on the team"}</dt><dd className="mt-2 text-sm">{project.role}</dd></div></dl>
         <div className="mt-6 flex flex-wrap gap-2">{project.stack.map((tech) => <span key={tech} className="tech-tag">{tech}</span>)}</div>
         <div className="mt-8 flex flex-wrap gap-3">
           <a href={project.website.href} target="_blank" rel="noopener noreferrer" className="primary-link website-primary" aria-label={`${project.website.label}, opens in a new tab`}>{project.website.label}<ArrowUpRight size={16} aria-hidden="true" /></a>
