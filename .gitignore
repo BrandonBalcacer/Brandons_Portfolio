@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local reference captures contain browser chrome; only prepared assets ship.
+/assets/references/

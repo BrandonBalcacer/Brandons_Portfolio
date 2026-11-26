@@ -1,73 +1,37 @@
-import { projects } from "@/lib/data";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight, Github, LockKeyhole } from "lucide-react";
+import { detailedProjects } from "@/lib/project-details";
 import { Reveal } from "@/components/reveal";
 import { SectionHeader } from "@/components/section-header";
-import { ArrowUpRight } from "lucide-react";
+import { ProjectVisual } from "@/components/project-visual";
 
 export function ProjectsSection() {
   return (
-    <section className="mt-20">
-      <SectionHeader
-        index="02"
-        title="projects"
-        count={`${projects.length} builds`}
-      />
+    <section id="projects" className="mt-20 scroll-mt-8">
+      <SectionHeader index="01" title="projects" count={`${detailedProjects.length} builds`} />
+      <p className="mb-8 max-w-xl text-muted">A few things I&apos;ve built. Open a project for the use case, the decisions, and what&apos;s under the hood.</p>
       <div className="grid gap-4 sm:grid-cols-2">
-        {projects.map((project, i) => (
-          <Reveal key={project.name} delay={i * 0.06}>
-            <article className="group flex h-full flex-col rounded-xl border border-line bg-card p-5 transition-colors hover:border-accent/40 sm:p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                <h3 className="font-medium tracking-tight">{project.name}</h3>
-                <span className="font-mono text-[11px] text-subtle">
-                  {project.context}
-                </span>
+        {detailedProjects.map((project, index) => (
+          <Reveal key={project.slug} delay={index * 0.05}>
+            <article className="project-card group" data-project={project.slug} data-field-blocker>
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-mono text-xs text-subtle">0{index + 1} / {project.tagline}</span>
+                <ArrowUpRight size={20} className="project-accent shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
               </div>
-              <p className="mt-0.5 font-mono text-xs text-muted">
-                {project.tagline}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {project.bullets.map((bullet, b) => (
-                  <li
-                    key={b}
-                    className="flex gap-3 text-sm leading-relaxed text-muted"
-                  >
-                    <span
-                      className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent"
-                      aria-hidden="true"
-                    />
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 flex flex-wrap gap-1.5 pt-1">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md border border-line bg-background px-2 py-0.5 font-mono text-[11px] text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              <ProjectVisual images={project.images} slug={project.slug} />
+              <h3 className="text-2xl font-semibold tracking-tight"><Link href={`/projects/${project.slug}`} className="project-main-link" aria-label={`Explore ${project.name}`}>{project.name}</Link></h3>
+              <p className="mt-2 text-base leading-relaxed text-muted">{project.summary}</p>
+              <div className="mt-5 flex flex-wrap gap-2">{project.stack.slice(0, 4).map((tech) => <span key={tech} className="tech-tag">{tech}</span>)}</div>
+              <p className="mb-4 mt-5 font-mono text-xs text-subtle">{project.context}</p>
+              <a href={project.website.href} target="_blank" rel="noopener noreferrer" className="project-website" aria-label={`${project.website.label}, opens in a new tab`}>
+                <span><span className="block text-sm">{project.website.label}</span><span className="mt-1 block font-mono text-[11px] text-muted">{project.website.display ?? new URL(project.website.href).hostname}</span></span>
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </a>
+              {project.website.note ? <p className="mb-4 mt-2 font-mono text-[11px] text-subtle">{project.website.note}</p> : null}
+              <div className="project-actions">
+                <Link href={`/projects/${project.slug}`} className="project-action" aria-label={`${project.name} case study`}>Case study <ArrowRight size={14} aria-hidden="true" /></Link>
+                <a href={project.repository.href} target="_blank" rel="noopener noreferrer" className="project-action" aria-label={`${project.name} GitHub repository${project.repository.private ? ', private, access required' : ''}`}><Github size={14} aria-hidden="true" />Source{project.repository.private ? <><LockKeyhole size={11} aria-hidden="true" /><span className="text-subtle">Private</span></> : <ArrowUpRight size={12} aria-hidden="true" />}</a>
               </div>
-              {project.links.length > 0 && (
-              <div className="mt-5 flex flex-wrap gap-4 border-t border-line pt-4">
-                {project.links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${link.label} link for ${project.name}`}
-                    className="group/link inline-flex items-center gap-1.5 font-mono text-xs text-accent transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                    <ArrowUpRight
-                      className="h-3.5 w-3.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                      aria-hidden="true"
-                    />
-                  </a>
-                ))}
-              </div>
-              )}
             </article>
           </Reveal>
         ))}

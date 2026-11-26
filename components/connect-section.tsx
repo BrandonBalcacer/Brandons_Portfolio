@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/section-header";
 
 export function ConnectSection() {
   return (
-    <footer className="mt-20">
+    <footer id="connect" className="mt-20 scroll-mt-8">
       <SectionHeader index="05" title="connect" />
       <Reveal>
         <p className="mb-6 max-w-md font-mono text-sm text-muted">
