@@ -2,12 +2,12 @@ export const profile = {
   name: "Brandon Balcacer",
   handle: "brandon",
   host: "portfolio",
-  role: "Digital Data Analyst · Data Engineer",
+  role: "Digital Data Analyst · Data Engineer · Founder, Simargi Systems",
   location: "Hackensack, NJ",
   phone: "(609) 401-8703",
   email: "Balcacerrule@gmail.com",
   status: "Digital Data Analyst Intern @ Versant Media, CNBC",
-  bio: "Information Technology Management student at Ramapo College of New Jersey, Digital Data Analyst Intern supporting CNBC at Versant Media, and founder of Simargi Systems. I build analytics systems, data pipelines, and AI products that keep a human in control, with experience spanning media, rail operations, real estate, and client software.",
+  bio: "I’m an Information Technology Management student at Ramapo College of New Jersey, a Digital Data Analyst Intern supporting CNBC at Versant Media, and the founder of Simargi Systems.\n\nI enjoy building and shipping AI-assisted systems and meaningful software that solves real problems. My expertise is working with and analyzing data, with experience in media, transportation, and website analytics.\n\nI’m an aspiring technological comprehensivist. I love learning how the whole stack fits together, from CPUs, GPUs, and hardware to software, data centers, cloud computing, AI, and machine learning. I’m also interested in finance and AI trade.",
 };
 
 export type Experience = {
@@ -43,7 +43,7 @@ export const experience: Experience[] = [
     bullets: [
       "Founded Simargi Systems to build workflow software for small businesses in specific industries, with a human approval step in every agent-assisted workflow; built the company site at simargisystems.com in Next.js, TypeScript, and Zod.",
       "Built Stratos, a multi-tenant property research platform for North Jersey realtors that ranks every structure on a street using parcel data, a two-model vision ensemble, and public records.",
-      "Built a human-approved CRM agent for a licensed North Jersey real estate agent on the Lofty platform, with encrypted OAuth, phone-based approvals, and kill switches; it is running as a controlled pilot.",
+      "Building Relay Agent, a real estate CRM agent with a lead inbox, escalation queue, and human review controls. The team is moving to PLACE; agent replies are being evaluated in shadow mode while customer sends stay locked.",
       "Brought Bakelytics, a multi-tenant bakery analytics SaaS, under Simargi as its bakery operations product, now in pilot.",
     ],
   },
@@ -110,13 +110,13 @@ export const projects: Project[] = [
     links: [],
   },
   {
-    name: "Lofty CRM Agent",
+    name: "Relay Agent",
     tagline: "Human-Approved Real Estate Agent Assistant",
     context: "Simargi Systems · Pilot",
     bullets: [
-      "Drafts lead responses for a licensed real estate agent from business knowledge the client has confirmed, and sends each proposed action to the agent's phone for approval, so only the exact approved action can reach the Lofty CRM.",
+      "Built a dedicated workspace for lead intake, follow-ups, draft replies, and escalations. The client team is moving to PLACE; its connection and real-lead processing remain pending approval.",
       "Built the security model: OAuth with AES-256-GCM encrypted token storage and rotation, HMAC-bound approval codes with expiry and replay rejection, CSRF-protected signed sessions, STOP/DNC suppression, global and per-tenant kill switches, and an append-only audit log.",
-      "TypeScript, Fastify, and PostgreSQL 16 with database-level enforcement triggers and leased, idempotent jobs with dead-lettering; 365 passing tests, and no deployed route can send a message or change a CRM record.",
+      "TypeScript, Fastify, and PostgreSQL with database-level enforcement and auditable jobs. Replies are evaluated in shadow mode; customer sends and CRM changes remain locked under the current pilot rules.",
     ],
     stack: ["TypeScript", "Fastify", "PostgreSQL", "OAuth 2.0", "OpenAI API", "Vercel"],
     links: [],

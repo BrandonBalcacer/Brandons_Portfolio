@@ -5,11 +5,11 @@ import { SectionHeader } from "@/components/section-header";
 
 export function EducationSection() {
   return (
-    <section className="mt-20">
+    <section id="education" data-section-theme="amber" className="section-themed mt-20 scroll-mt-8">
       <SectionHeader index="04" title="education & honors" />
       <div className="grid gap-4 sm:grid-cols-2">
         <Reveal>
-          <article className="h-full rounded-xl border border-line bg-card p-5 sm:p-6">
+          <article data-field-blocker className="section-card h-full rounded-xl border p-5 sm:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h3 className="font-medium tracking-tight">{education.school}</h3>
               <span className="font-mono text-xs text-subtle">
@@ -26,7 +26,7 @@ export function EducationSection() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <article className="h-full rounded-xl border border-line bg-card p-5 sm:p-6">
+          <article data-field-blocker className="section-card h-full rounded-xl border p-5 sm:p-6">
             <h3 className="font-mono text-xs text-subtle">honors</h3>
             <ul className="mt-4 space-y-3">
               {honors.map((honor) => (
