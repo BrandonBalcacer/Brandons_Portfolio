@@ -31,7 +31,7 @@ export function Hero() {
           </a>
         </figure>
       </div>
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-muted"><span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{profile.status}</span><span className="text-subtle">Founder. Builder. Sprinter.</span></div>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-muted"><span className="inline-flex items-center gap-2"><span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{profile.status}</span><span className="text-subtle">Founder. Builder. Freethinker.</span></div>
     </header>
   );
 }

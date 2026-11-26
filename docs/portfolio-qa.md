@@ -13,6 +13,7 @@ The public portfolio links each project card to its case study, live app, and so
 - Enlarged screenshots open in a native modal dialog. Escape and the close button work; keyboard focus returns to the originating button. Roam's enlarged view was visually checked at 375px.
 - Workflow tabs switch with ArrowRight; the active panel and its accessible label update together.
 - Browser console: no errors observed during the local page and gallery checks.
+- Revised lightning: observed branching white cores and the page-wide illumination at desktop size, confirmed bolt and flash removal after the strike, and checked 13 connected channels with no horizontal overflow at 375px. The photo line reads Founder. Builder. Freethinker.
 - All four external app root URLs returned HTTP 200. Authenticated product flows were not exercised. Private source links are labeled as requiring access.
 - Main-page metadata contains a title, description, viewport, generated Open Graph image, Twitter card, and favicon. Case studies define their own screenshot share images.
 

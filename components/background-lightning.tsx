@@ -1,34 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-const paths = [
-  "M95 -20 L145 115 L110 172 L179 266 L133 315 L204 442 L167 485 L231 650",
-  "M1320 -20 L1244 117 L1282 171 L1218 289 L1254 343 L1184 468 L1215 521 L1150 700",
-  "M-30 590 L112 555 L154 592 L286 538 L336 569 L465 509 L511 536 L640 487",
-];
+import { useEffect, useState, type CSSProperties } from "react";
+import { createLightning, type LightningStrike } from "@/lib/lightning";
 
 export function BackgroundLightning() {
-  const [bolt, setBolt] = useState<number | null>(null);
+  const [bolt, setBolt] = useState<LightningStrike | null>(null);
   useEffect(() => {
     const motion = window.matchMedia("(prefers-reduced-motion: no-preference)");
     let next: ReturnType<typeof setTimeout>;
     let fade: ReturnType<typeof setTimeout>;
     let sequence = 0;
-    function schedule() {
+    function schedule(first = false) {
       if (!motion.matches || document.hidden) return;
       next = setTimeout(() => {
-        setBolt(sequence++ % paths.length);
-        fade = setTimeout(() => { setBolt(null); schedule(); }, 1000);
-      }, 10000 + Math.random() * 12000);
+        setBolt(createLightning(sequence++));
+        fade = setTimeout(() => { setBolt(null); schedule(); }, 1600);
+      }, first ? 4500 + Math.random() * 3500 : 10000 + Math.random() * 10000);
     }
     function reset() {
       clearTimeout(next);
       clearTimeout(fade);
       setBolt(null);
-      schedule();
+      schedule(true);
     }
-    schedule();
+    schedule(true);
     motion.addEventListener("change", reset);
     document.addEventListener("visibilitychange", reset);
     return () => {
@@ -39,9 +34,18 @@ export function BackgroundLightning() {
     };
   }, []);
 
-  return <div className="background-atmosphere" aria-hidden="true">
-    <svg className="background-lightning" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      {bolt !== null ? <g key={bolt} className="lightning-streak"><path d={paths[bolt]} className="lightning-halo" /><path d={paths[bolt]} className="lightning-core" /></g> : null}
+  return <>
+    <div className="background-atmosphere" aria-hidden="true">
+    <svg className="background-lightning" viewBox="0 0 1440 900" preserveAspectRatio="none">
+      {bolt ? <g key={bolt.id} className="lightning-streak">
+        {bolt.channels.map((channel, index) => <g key={index} className={channel.branch ? "lightning-branch" : "lightning-trunk"}>
+          <path d={channel.path} strokeWidth={channel.width * 18} vectorEffect="non-scaling-stroke" className="lightning-bloom" />
+          <path d={channel.path} strokeWidth={channel.width * 5} vectorEffect="non-scaling-stroke" className="lightning-halo" />
+          <path d={channel.path} strokeWidth={channel.width} vectorEffect="non-scaling-stroke" className="lightning-core" />
+        </g>)}
+      </g> : null}
     </svg>
-  </div>;
+    </div>
+    {bolt ? <div key={bolt.id} aria-hidden="true" className="lightning-page-flash" style={{ "--strike-x": `${bolt.originX / 14.4}%` } as CSSProperties} /> : null}
+  </>;
 }
