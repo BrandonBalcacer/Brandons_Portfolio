@@ -132,6 +132,13 @@ body:has(.screenshot-dialog[open]) { overflow: hidden; }
 .lightning-page-flash { position: fixed; inset: 0; z-index: 25; pointer-events: none; background: radial-gradient(ellipse at var(--strike-x) var(--strike-y), rgb(235 255 250 / .65), rgb(157 232 210 / .24) 38%, transparent 85%), rgb(198 245 232 / .10); animation: lightning-illumination 1100ms ease-out both; }
 @keyframes lightning-discharge { 0% { opacity: 0; } 5% { opacity: .15; } 9% { opacity: 1; } 18% { opacity: .8; } 30% { opacity: .34; } 46% { opacity: .16; } 100% { opacity: 0; } }
 @keyframes lightning-illumination { 0%, 5% { opacity: 0; } 13% { opacity: 1; } 26% { opacity: .32; } 55%, 100% { opacity: 0; } }
+.lightning-streak[data-intensity="gentle"] { animation: lightning-discharge-mobile 1800ms ease-out both; }
+.lightning-streak[data-intensity="gentle"] .lightning-core { stroke: #b9ead7; }
+.lightning-streak[data-intensity="gentle"] .lightning-halo { filter: blur(2px); opacity: .4; }
+.lightning-streak[data-intensity="gentle"] .lightning-branch { opacity: .6; }
+.lightning-page-flash[data-intensity="gentle"] { background: radial-gradient(ellipse at var(--strike-x) var(--strike-y), rgb(114 205 176 / .16), transparent 70%); animation: lightning-illumination-mobile 1800ms ease-out both; }
+@keyframes lightning-discharge-mobile { 0% { opacity: 0; } 25% { opacity: .5; } 60% { opacity: .16; } 100% { opacity: 0; } }
+@keyframes lightning-illumination-mobile { 0% { opacity: 0; } 30% { opacity: .35; } 70% { opacity: .06; } 100% { opacity: 0; } }
 @media (hover: hover) {
   a:not(.project-main-link), button { transition: color 180ms ease-out, border-color 180ms ease-out, box-shadow 240ms ease-out, background-color 240ms ease-out; }
   a:not(.project-main-link):hover, button:hover { box-shadow: 0 0 24px color-mix(in oklch, var(--project-accent, var(--accent)) 14%, transparent); }
