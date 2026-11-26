@@ -34,7 +34,6 @@ export function IntroScreen() {
   const [phase, setPhase] = useState<Phase>(() => (hasPlayed ? "done" : "playing"));
   const [fallback, setFallback] = useState(false);
   const [formed, setFormed] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const leave = useCallback(() => setPhase((current) => (current === "playing" ? "leaving" : current)), []);
   const visible = phase !== "done";
@@ -79,8 +78,11 @@ export function IntroScreen() {
         canvas: target,
         lines: LINES,
         fontFamily: getComputedStyle(document.body).fontFamily,
+        greeting: {
+          text: GREETING,
+          fontFamily: `${getComputedStyle(document.body).getPropertyValue("--font-mono").trim() || "monospace"}, monospace`,
+        },
         particles: small ? 65_536 : 262_144,
-        onLayout: (bottom) => root.current?.style.setProperty("--intro-name-bottom", `${bottom * 100}%`),
         onFormed: () => setFormed(true),
         onError: fail,
       });
@@ -107,10 +109,13 @@ export function IntroScreen() {
   if (!visible) return null;
 
   return (
-    <div ref={root} className="intro" data-phase={phase} data-fallback={fallback || undefined}>
+    <div className="intro" data-phase={phase} data-fallback={fallback || undefined}>
       {fallback ? null : <canvas ref={canvas} aria-hidden="true" className="intro-canvas" />}
       <p className={fallback ? "intro-name" : "sr-only"}>{NAME}</p>
-      <p className="intro-greeting">{GREETING}</p>
+      {/* The particles spell the greeting too; this copy serves screen readers and the fallback. */}
+      <p className={fallback ? "intro-greeting" : "sr-only"}>
+        {GREETING}
+      </p>
       <button type="button" className="intro-skip" onClick={leave}>
         Skip
       </button>

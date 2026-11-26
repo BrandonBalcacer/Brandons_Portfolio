@@ -1,5 +1,5 @@
 // Adapted from the vgpu "Spring Choreography" example. One morph, no loop: the
-// wave field springs into the name and holds. The demo's timeline controls,
+// wave field springs into the name and greeting, and holds. The demo's timeline controls,
 // GUI and click bursts are removed; the baked springs, stagger, compute
 // pipeline and resource cleanup are the example's.
 
@@ -20,9 +20,9 @@ interface RendererOptions {
   readonly canvas: HTMLCanvasElement;
   readonly lines: { readonly wide: readonly string[]; readonly tall: readonly string[] };
   readonly fontFamily: string;
+  /** Formed in particles beneath the name, in its own face. */
+  readonly greeting: { readonly text: string; readonly fontFamily: string };
   readonly particles: number;
-  /** Where the name ends, as a fraction of the canvas height. */
-  readonly onLayout: (bottom: number) => void;
   /** Called once, when the name has formed. */
   readonly onFormed: () => void;
   readonly onError: (error: unknown) => void;
@@ -47,22 +47,46 @@ function bestEffort(cleanup: () => void): void {
   }
 }
 
-/** Rasterises the name on a 2D canvas and samples its lit pixels as world-space points. */
-function glyphPoints(lines: readonly string[], fontFamily: string, aspect: number) {
-  const fontSize = 200;
-  const lineHeight = fontSize * 1.05;
+const NAME_SIZE = 200;
+/** The greeting's size, gap above it and tracking, relative to the name's font size. */
+const GREETING_SIZE = 0.34;
+const GREETING_GAP = 0.3;
+const GREETING_TRACKING = 0.08;
+
+/** Rasterises the name and greeting on a 2D canvas and samples their lit pixels as world-space points. */
+function glyphPoints(
+  lines: readonly string[],
+  greeting: RendererOptions["greeting"],
+  fontFamily: string,
+  aspect: number,
+) {
+  const lineHeight = NAME_SIZE * 1.05;
+  const greetingSize = Math.round(NAME_SIZE * GREETING_SIZE);
+  const nameFont = `700 ${NAME_SIZE}px ${fontFamily}`;
+  const greetingFont = `600 ${greetingSize}px ${greeting.fontFamily}`;
+  const tracking = `${Math.round(greetingSize * GREETING_TRACKING)}px`;
   const sheet = document.createElement("canvas");
   const context = sheet.getContext("2d", { willReadFrequently: true });
   if (!context) throw new Error("2D canvas unavailable");
-  const font = `700 ${fontSize}px ${fontFamily}`;
-  context.font = font;
-  sheet.width = Math.ceil(Math.max(...lines.map((line) => context.measureText(line).width))) + 20;
-  sheet.height = Math.ceil(lineHeight * lines.length);
-  context.font = font;
+
+  context.font = nameFont;
+  const nameWidth = Math.max(...lines.map((line) => context.measureText(line).width));
+  context.font = greetingFont;
+  context.letterSpacing = tracking;
+  const greetingWidth = context.measureText(greeting.text).width;
+  const greetingTop = lineHeight * lines.length + NAME_SIZE * GREETING_GAP;
+  sheet.width = Math.ceil(Math.max(nameWidth, greetingWidth)) + 20;
+  sheet.height = Math.ceil(greetingTop + greetingSize * 1.3);
+
+  // Resizing the canvas resets its state, so styles are set after.
   context.textAlign = "center";
   context.textBaseline = "middle";
   context.fillStyle = "#fff";
+  context.font = nameFont;
   lines.forEach((line, i) => context.fillText(line, sheet.width / 2, lineHeight * (i + 0.5)));
+  context.font = greetingFont;
+  context.letterSpacing = tracking;
+  context.fillText(greeting.text, sheet.width / 2, greetingTop + greetingSize * 0.65);
 
   const { data } = context.getImageData(0, 0, sheet.width, sheet.height);
   const lit: number[] = [];
@@ -76,20 +100,18 @@ function glyphPoints(lines: readonly string[], fontFamily: string, aspect: numbe
   const halfHeight = CAMERA_DISTANCE * pullback(aspect) * Math.tan(HALF_FOV);
   const width = Math.min(halfHeight * aspect * 1.8, 3.8);
   const scale = width / sheet.width;
-  const lift = halfHeight * 0.08;
   const points = new Float32Array(GLYPH_POINTS * 2);
   const available = lit.length / 2;
   for (let i = 0; i < GLYPH_POINTS; i++) {
     const at = Math.floor((i * available) / GLYPH_POINTS) * 2;
     points[i * 2] = (lit[at]! - sheet.width / 2) * scale;
-    points[i * 2 + 1] = (sheet.height / 2 - lit[at + 1]!) * scale + lift;
+    points[i * 2 + 1] = (sheet.height / 2 - lit[at + 1]!) * scale;
   }
-  const bottomWorld = lift - (sheet.height * scale) / 2;
-  return { points, bottom: 0.5 - bottomWorld / (2 * halfHeight) };
+  return points;
 }
 
 export function createRenderer(options: RendererOptions) {
-  const { canvas, lines, fontFamily, particles, onLayout, onFormed, onError } = options;
+  const { canvas, lines, fontFamily, greeting, particles, onFormed, onError } = options;
   let disposed = false;
   let ticking = false;
   let formed = false;
@@ -117,12 +139,10 @@ export function createRenderer(options: RendererOptions) {
 
   const layoutName = () => {
     const aspect = size[0] / Math.max(1, size[1]);
-    const name = glyphPoints(aspect < 1 ? lines.tall : lines.wide, fontFamily, aspect);
-    pipeline?.setGlyphs(name.points);
+    pipeline?.setGlyphs(glyphPoints(aspect < 1 ? lines.tall : lines.wide, greeting, fontFamily, aspect));
     // Thin letters stack far more sparks per pixel than the demo's shapes, most
     // of all on wide screens, where the demo's exposure blows out to white.
     pipeline?.setLook({ exposure: aspect < 1 ? 0.85 : 0.22, streak: 0.006 });
-    onLayout(name.bottom);
   };
 
   const render = () => {
