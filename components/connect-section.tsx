@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/section-header";
 
 export function ConnectSection() {
   return (
-    <footer id="connect" className="mt-20 scroll-mt-8">
+    <footer id="connect" data-section-theme="mint" className="section-themed mt-20 scroll-mt-8">
       <SectionHeader index="05" title="connect" />
       <Reveal>
         <p className="mb-6 max-w-md font-mono text-sm text-muted">
@@ -20,7 +20,7 @@ export function ConnectSection() {
                 href={social.href}
                 target={isMail ? undefined : "_blank"}
                 rel={isMail ? undefined : "noopener noreferrer"}
-                className="group flex items-center justify-between rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-muted transition-colors hover:border-accent/50 hover:text-foreground"
+                className="section-card connect-card group flex min-h-11 items-center justify-between rounded-lg border px-3 py-2.5 text-sm text-muted hover:text-foreground"
               >
                 <span className="font-mono text-xs">{social.label}</span>
                 <ArrowUpRight className="h-3.5 w-3.5 text-subtle transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />

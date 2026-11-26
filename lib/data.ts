@@ -7,7 +7,7 @@ export const profile = {
   phone: "(609) 401-8703",
   email: "Balcacerrule@gmail.com",
   status: "Digital Data Analyst Intern @ Versant Media, CNBC",
-  bio: "Information Technology Management student at Ramapo College of New Jersey, Digital Data Analyst Intern supporting CNBC at Versant Media, and founder of Simargi Systems. I build analytics systems, data pipelines, and AI products that keep a human in control, with experience spanning media, rail operations, real estate, and client software.",
+  bio: "I’m an Information Technology Management student at Ramapo College of New Jersey, a Digital Data Analyst Intern supporting CNBC at Versant Media, and the founder of Simargi Systems.\n\nI enjoy building and shipping AI-assisted systems and meaningful software that solves real problems. My expertise is working with and analyzing data, with experience in media, transportation, and website analytics.\n\nI’m an aspiring technological comprehensivist. I love learning how the whole stack fits together, from CPUs, GPUs, and hardware to software, data centers, cloud computing, AI, and machine learning. I’m also interested in finance and AI trade.",
 };
 
 export type Experience = {
