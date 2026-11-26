@@ -20,6 +20,13 @@ The public portfolio links each project card to its case study, live app, and so
 - All four external app root URLs returned HTTP 200. Authenticated product flows were not exercised. Private source links are labeled as requiring access.
 - Main-page metadata contains a title, description, viewport, generated Open Graph image, Twitter card, and favicon. Case studies define their own screenshot share images.
 
+## Mobile lightning follow-up
+
+- Checked the gentle profile at a 390px viewport: 18 SVG paths, no broad bloom paths, a localized mint illumination, a slower 1.8-second fade, and no horizontal overflow.
+- Resizing into desktop switched back to the original full profile: 39 SVG paths, 13 bloom paths, the original animation and white page illumination. No browser errors were observed during this comparison.
+- Mobile/touch-first scheduling uses a 10-16 second first delay and an 18-30 second inter-strike wait. Desktop delay ranges remain unchanged. Media-query changes clear pending strikes and reschedule; reduced motion still disables decoration.
+- This is viewport-based browser verification, not an on-device frame-rate or battery measurement.
+
 ## Intentional design choices and limits
 
 - Green glow, occasional lightning, tinted project surfaces, and image hover previews were explicitly requested. Static image scaling crops screenshots; hover changes that scale only slightly.
