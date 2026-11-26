@@ -36,7 +36,7 @@ const stories: Record<string, ProjectStory> = {
     ],
     takeaway: "I started with a friend's very practical frustration. The work keeps coming back to the same question: can an agent trust the evidence enough to decide which property deserves a closer look?",
   },
-  "Real Estate CRM Agent": {
+  "Relay Agent": {
     slug: "crm-agent", summary: "An assistant that asks before it acts.",
     images: [
       { src: "/images/projects/crm-inbox-dark.webp", alt: "Dark lead workspace with sample leads, contact permissions, and attention queue", caption: "The lead inbox, shown with sample records and masked contact details." },

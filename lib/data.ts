@@ -43,7 +43,7 @@ export const experience: Experience[] = [
     bullets: [
       "Founded Simargi Systems to build workflow software for small businesses in specific industries, with a human approval step in every agent-assisted workflow; built the company site at simargisystems.com in Next.js, TypeScript, and Zod.",
       "Built Stratos, a multi-tenant property research platform for North Jersey realtors that ranks every structure on a street using parcel data, a two-model vision ensemble, and public records.",
-      "Building a real estate CRM agent with a lead inbox, escalation queue, and human review controls. The team is moving to PLACE; agent replies are being evaluated in shadow mode while customer sends stay locked.",
+      "Building Relay Agent, a real estate CRM agent with a lead inbox, escalation queue, and human review controls. The team is moving to PLACE; agent replies are being evaluated in shadow mode while customer sends stay locked.",
       "Brought Bakelytics, a multi-tenant bakery analytics SaaS, under Simargi as its bakery operations product, now in pilot.",
     ],
   },
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     links: [],
   },
   {
-    name: "Real Estate CRM Agent",
+    name: "Relay Agent",
     tagline: "Human-Approved Real Estate Agent Assistant",
     context: "Simargi Systems · Pilot",
     bullets: [

@@ -25,6 +25,6 @@ The public portfolio links each project card to its case study, live app, and so
 - Green glow, occasional lightning, tinted project surfaces, and image hover previews were explicitly requested. Static image scaling crops screenshots; hover changes that scale only slightly.
 - The CSS radius aliases correspond to the existing 6/8/12px scale. Static scanner warnings about separate component titles and viewports are inherited-layout false positives.
 - Fluid behavior is covered by engine tests. The native browser pointer driver selected page text during an attempted margin gesture, so the final cursor feel still needs Brandon's visual review. Reduced-motion and visibility handling are implemented in code; OS reduced-motion emulation was not available in this browser session.
-- The CRM is temporarily called Real Estate CRM Agent. The existing repository and hosted address retain legacy names; no connected CRM, deployment, live lead processing, or customer sending was changed.
+- The real estate CRM project is named Relay Agent. The existing repository and hosted address retain legacy names; no connected CRM, deployment, live lead processing, or customer sending was changed.
 - Prepared app images are presentation edits of supplied captures; bakery figures are synthetic. See `project-image-preparation.md` for provenance and prompts.
 - This change is prepared for a single pull request. It does not merge or deploy production.
