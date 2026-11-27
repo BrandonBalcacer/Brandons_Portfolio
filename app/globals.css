@@ -117,9 +117,9 @@ main:has(.liquid-grid) { overflow-x: clip; }
 .section-heading[data-section-index="04"] { --section-accent: var(--amber); }
 .section-heading > span:first-child, .section-heading .text-accent { color: var(--section-accent, var(--accent)); }
 .section-rule { background: linear-gradient(90deg, color-mix(in oklch, var(--section-accent, var(--accent)) 50%, var(--line)), var(--line) 85%); }
-/* LED strip under the top nav (components/led-strip.tsx), after the
+/* LED strip under each top-nav link (components/led-strip.tsx), after the
    triangle-LED hero: segments glow mint at rest and switch to red, green and
-   blue on hover, spilling grainy light onto the page. */
+   blue while that link is hovered, spilling grainy light onto the page. */
 .led-host {
   --led-color: color-mix(in oklch, var(--accent) 72%, white);
   --led-red: rgb(242 46 64);
@@ -131,6 +131,14 @@ main:has(.liquid-grid) { overflow-x: clip; }
   padding-bottom: 16px;
 }
 .led-host > :not(.led) { position: relative; z-index: 1; }
+/* In a nav link the strip sits inside the 44px target, behind the label. */
+.nav-link.led-host { padding-bottom: 0; isolation: isolate; }
+.nav-link .led { bottom: 5px; z-index: -1; }
+/* Short strips: the spill is a soft pool that reaches past the link's edges. */
+.nav-link .led-spill { left: -28px; right: -28px; top: -24px; height: 51px; mask-image: radial-gradient(closest-side, rgb(0 0 0 / 0.55), transparent), var(--led-grain); }
+.nav-link .led-glow { mask-image: linear-gradient(transparent, rgb(0 0 0 / 0.55) 50%, transparent), linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
+.nav-link .led-hot { top: -14px; height: 31px; mask-image: radial-gradient(34px 12px at var(--led-x, -200px) 50%, #000, transparent), var(--led-grain); }
+.nav-link.led-host:hover { background: none; box-shadow: none; }
 .led { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; pointer-events: none; }
 /* Every layer is the LED color; masks give it its shape, falloff and grain. */
 .led > * { position: absolute; left: 0; right: 0; background: var(--led-color); mask-composite: intersect; }
@@ -168,16 +176,7 @@ main:has(.liquid-grid) { overflow-x: clip; }
 .led-rgb { opacity: 0; transition: opacity 380ms ease-out; }
 .led-host:hover .led-rgb, .led-host:hover .led-hot { opacity: 1; }
 .led-host:hover .led > :not(.led-rgb, .led-hot) { opacity: 0; }
-/* The strip powers on left to right as it scrolls in, where scroll timelines exist. */
-@supports (animation-timeline: view()) {
-  .led { animation: led-on linear both; animation-timeline: view(); animation-range: entry 10% cover 30%; }
-}
-@keyframes led-on {
-  from { clip-path: inset(-80px 100% -80px 0); }
-  to { clip-path: inset(-80px -10px -80px 0); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .led { animation: none; }
   .led > * { transition: none; }
 }
 .section-themed { --project-accent: var(--section-accent); }
